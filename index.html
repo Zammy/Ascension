@@ -1,11 +1,20 @@
 <html>
 <head>
-<script type="text/javascript" src="jquery-2.2.0.min.js"></script>
-<script type="text/javascript" src="pixi.js"></script>
-<script type="text/javascript" src="blendmodes.js"></script>
+<script type="text/javascript" src="js/jquery-2.2.0.min.js"></script>
+<script type="text/javascript" src="js/pixi.js"></script>
+<script type="text/javascript" src="js/global.js"></script>
+<script type="text/javascript" src="levels/level0.js"></script>
+<script type="text/javascript" src="js/levelLoader.js"></script>
+<script type="text/javascript" src="js/renderer.js"></script>
 <script type="text/javascript">
 $(function() {
-        start();
+  
+    loadLevel(0);
+
+    renderInit();
+    renderLevel();
+    startUpdate();
+  
 });
 </script>
 </head>
