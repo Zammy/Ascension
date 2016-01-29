@@ -25,7 +25,7 @@ function renderLevel() {
 	for (var y = 0; y < currentLevel.length; y++) {
 		 for (var x = 0; x < currentLevel[y].length; x++) {
 		  	var tile = currentLevel[y][x];
-		  	var sprite = PIXI.Sprite.fromImage("../assets/" + tile.sprite);
+		  	var sprite = PIXI.Sprite.fromImage("assets/" + tile.sprite);
 		  	sprite.position.x = width * x;
 		  	sprite.position.y = height * y;
 		  	stage.addChild(sprite);
