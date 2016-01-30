@@ -32,7 +32,7 @@ function movePlayer(now) {
 	if (length < 3) {
 		player.container.position = realNext;
 		//we have arrived
-		if (sqrDist(player.next, player.goal) < 3) {
+		if (sqrDist(player.next, player.goal) < ZERO_EPS) {
 			player.goal = null;
 			player.next = null;
 		} else {
