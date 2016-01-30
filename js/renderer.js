@@ -195,7 +195,7 @@ function renderPlayer() {
 			var clip = new PIXI.extras.MovieClip( keyToAnim[key] );
 			clip.visible = false;
 			clip.position = new PIXI.Point(-TILE_WIDTH/2, -TILE_HEIGHT/2 - 46);
-			clip.animationSpeed = 0.2;
+			clip.animationSpeed = 0.4;
 			player.animations[key] = clip;
 			container.addChild(clip);
 		}
@@ -267,7 +267,7 @@ function renderGuards(){
 				var clip = new PIXI.extras.MovieClip( keyToAnim[key] );
 				clip.visible = false;
 				clip.position = new PIXI.Point(-TILE_WIDTH/2-32, -TILE_HEIGHT/2 -64);
-				clip.animationSpeed = 0.2;
+				clip.animationSpeed = 0.4;
 				guard.animations[key] = clip;
 				container.addChild(clip);
 			}
