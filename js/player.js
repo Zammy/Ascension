@@ -131,3 +131,9 @@ function updateActor(actor, now) {
 	} 
 	actor.next = null;
 }
+
+function playerDied() {
+	alert('dead');
+	loadLevel(state.currentLevelIndex);
+	renderLevel();
+}

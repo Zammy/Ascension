@@ -5,6 +5,7 @@ function loadLevel(num) {
 		state = {};
 	}
 	state.currentLevel = [];
+	state.currentLevelIndex = num;
 
 	var map = levelData.map;
 	var defenition = levelData.defenition;
@@ -57,9 +58,7 @@ var interactableUpdates = {
 		var playerMapPos = realToMapPos( player.container.position );
 		var spikesMapPos = realToMapPos( spikes.spriteShown.position );
 		if (sqrDist(playerMapPos, spikesMapPos) < 1) {
-			alert ("YOU ARE DEAD!");
-			player.container.position = mapToRealPos( player.startingPos );
-			player.goal = null;
+			playerDied();
 		}
 	}
 }
