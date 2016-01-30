@@ -133,9 +133,7 @@ function updateActor(actor, now) {
 	if (!actor.goal){
 		if (actor.routine && actor.routine.length>0){
 			actor.currentActionIndex = (actor.currentActionIndex + 1) % actor.routine.length;
-			console.log(actor.routine.length+" "+actor.currentActionIndex);
 			var action = actor.routine[actor.currentActionIndex];
-			console.log(JSON.stringify(action));
 			switch (action[0]){
 				case "walk": 
 					actor.goal = {x: action[1], y: action[2]};

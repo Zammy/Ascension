@@ -120,10 +120,10 @@ function renderLevel(onLoaded) {
 		};
 	};
 	var loader = new PIXI.loaders.Loader();
-	loader.add('player_right', 'assets/raw/animation-player/render-right/player_right.json');
-	loader.add('player_left', 'assets/raw/animation-player/render-left/player_left.json');
-	loader.add('player_up', 'assets/raw/animation-player/render-back/player_up.json');
-	loader.add('player_down', 'assets/raw/animation-player/render-front/player_down.json');
+	loader.add('player_right', 'assets/raw/animation-player/MOVE/render-right/player_right.json');
+	loader.add('player_left', 'assets/raw/animation-player/MOVE/render-left/player_left.json');
+	loader.add('player_up', 'assets/raw/animation-player/MOVE/render-back/player_up.json');
+	loader.add('player_down', 'assets/raw/animation-player/MOVE/render-front/player_down.json');
 	loader.on('complete', function() {
 		renderPlayer();
 		renderGuards();
@@ -192,28 +192,24 @@ function renderGuards(){
 			guard.baseTexture = PIXI.Texture.fromImage('assets/G.png');//PIXI.Texture.fromImage('assets/bkspr01.png');
 
 			var standingTexture = new PIXI.Texture(guard.baseTexture, new PIXI.Rectangle(0, 0, 64, 64) );
-			// var walking = 
-			// [
-			// 	new PIXI.Texture(guard.baseTexture, new PIXI.Rectangle(25, 157, 87, 97) ),
-			// 	new PIXI.Texture(guard.baseTexture, new PIXI.Rectangle(25, 296, 87, 97) ),
-			// ];
-
-			// var walkingAnim = new PIXI.extras.MovieClip(walking);
-			// walkingAnim.visible = false;
-			// walkingAnim.animationSpeed = 0.08;
-
 			var standing = new PIXI.Sprite(standingTexture);
 			standing.position = new PIXI.Point(-TILE_WIDTH/2, -TILE_HEIGHT/2);
 			guard.animations =
 			{
 				standing : standing
-				// walking : walkingAnim
 			}
-
+			
+			var torchTexture = new PIXI.Texture.fromImage('assets/torch.png');
+			var torch = new PIXI.Sprite(torchTexture);
+			torch.position = new PIXI.Point(-160, -160);
+			torch.blendMode = PIXI.BLEND_MODES.SCREEN;
+			
 			var container = new PIXI.Container();
 			container.anchor = new PIXI.Point(0.5, 0.5);
+			
 			container.addChild(guard.animations.standing);
 			// container.addChild(guard.animations.walking);
+			container.addChild(torch);
 			guard.container = container;
 		}
 	 
