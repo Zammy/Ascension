@@ -41,7 +41,27 @@ var typeLoader = {
 		shown.visible = false;
 		stage.addChild(shown);
 		spikes.spriteShown = shown;
-	}
+	},
+	"door" : function doorLoad(door, x, y) {
+		var openned = PIXI.Sprite.fromImage("assets/" + door.sprites.open);
+		openned.position.x = TILE_WIDTH * x;
+		openned.position.y = TILE_HEIGHT * y;
+		openned.visible = false;
+		stage.addChild(openned);
+		door.spriteOpenned = openned;
+
+		var closed = PIXI.Sprite.fromImage("assets/" + door.sprites.close);
+		closed.position.x = TILE_WIDTH * x;
+		closed.position.y = TILE_HEIGHT * y;
+		stage.addChild(closed);
+		door.spriteClosed = closed;
+
+		door.open = function() {
+			openned.visible = true;
+			closed.visible = false;
+			door.passable = true;
+		}
+	} 
 }
 
 function renderLevel() {

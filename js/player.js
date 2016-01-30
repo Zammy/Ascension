@@ -6,6 +6,17 @@ var interactableTiles = {
 		altar.visited = true;
 		stage.removeChild(altar.spriteNotVisited);
 		stage.addChild(altar.spriteVisited);
+
+		var currentLevel = state.currentLevel;
+		for (var y = 0; y < currentLevel.length; y++) {
+			var row = currentLevel[y];
+			for (var x = 0; x < row.length; x++) {
+				var tile = row[x];
+				if (tile.type == "door") {
+					tile.open();
+				}
+			}
+		};
 	}
 }
 
@@ -67,7 +78,6 @@ function setNext(actor) {
 function updateActor(actor, now) {
 	if (actor.waiting){
 		actor.waitTimeElapsed += STEP_TIME;
-		//debugger;
 		console.log(actor.waitTimeElapsed+" "+actor.waitFor+" "+actor.waiting);
 		if (actor.waitFor <= actor.waitTimeElapsed){
 			actor.waiting = false;
@@ -106,7 +116,7 @@ function updateActor(actor, now) {
 	var realNext = mapToRealPos( actor.next );
 	var delta = pointSubtract(realNext, actor.container.position);
 	normalize(delta)
-	scaleVector(delta, STEP_TIME * 100/ PLAYER_COMPLETE_MOVEMENT_MS);
+	scaleVector(delta, STEP_TIME * PLAYER_SPEED / PLAYER_COMPLETE_MOVEMENT_MS);
 	pointAdd(actor.container.position, delta);
 	delta = pointSubtract(realNext, actor.container.position);
 	var length = sqrVecLength(delta);
@@ -125,5 +135,10 @@ function updateActor(actor, now) {
 function playerDied() {
 	alert('dead');
 	loadLevel(state.currentLevelIndex);
+	renderLevel();
+}
+
+function goToNextLevel() {
+	loadLevel(state.currentLevelIndex+1);
 	renderLevel();
 }
