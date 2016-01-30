@@ -10,7 +10,7 @@ var explore_movements = [[1,0],[0,1],[-1,0],[0,-1]];
 
 function find_path(startX, startY, endX, endY) {
 	// Survey the currentLevel
-	console.log(startX+","+startY+" -> "+endX+","+endY);
+	//console.log(startX+","+startY+" -> "+endX+","+endY);
 	var passable = [];
 	var dist = []
 	var max_int = 999999;
@@ -85,7 +85,7 @@ function find_path(startX, startY, endX, endY) {
 				}
 			}
 		}
-		console.log("Reverse path: "+JSON.stringify(reverse));
+		//console.log("Reverse path: "+JSON.stringify(reverse));
 		if (reverse.length > 1){
 			moveX = reverse[reverse.length-2][0];
 			moveY = reverse[reverse.length-2][1];

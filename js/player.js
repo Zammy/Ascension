@@ -21,7 +21,24 @@ function playerGoTo(pos) {
 		return;
 	}
 	player.goal = pos;
-	player.next = null
+	player.next = null;
+}
+
+function setVisualRotation(actor, dir){
+	switch(dir){
+		case 'w':
+			actor.container.rotation =  Math.PI*1.5;
+			break;
+		case 'e':
+			actor.container.rotation =  Math.PI/2;
+			break;
+		case 's':
+			actor.container.rotation =  Math.PI;
+			break;
+		case 'n':
+			actor.container.rotation =  0;
+			break;
+	}
 }
 
 function calcActorRot(actor) {
@@ -29,17 +46,14 @@ function calcActorRot(actor) {
 	var dirVec = pointSubtract(actor.next, playerMapPos);
 	if (dirVec.x < 0) {
 		actor.dir = 'w';
-		actor.container.rotation =  Math.PI*1.5;
 	} else if (dirVec.x > 0) {
 		actor.dir = 'e';
-		actor.container.rotation =  Math.PI/2;
 	} else if (dirVec.y > 0) {
 		actor.dir = 's';
-		actor.container.rotation =  Math.PI;
 	} else {
 		actor.dir = 'n';
-		actor.container.rotation =  0;
 	}
+	setVisualRotation(actor, actor.dir);
 }
 
 function setNext(actor) {
@@ -49,6 +63,38 @@ function setNext(actor) {
 }
 
 function updateActor(actor, now) {
+	if (actor.waiting){
+		actor.waitTimeElapsed += STEP_TIME;
+		//debugger;
+		console.log(actor.waitTimeElapsed+" "+actor.waitFor+" "+actor.waiting);
+		if (actor.waitFor <= actor.waitTimeElapsed){
+			actor.waiting = false;
+		} else {
+			return;
+		}
+	}
+	if (!actor.goal){
+		if (actor.routine && actor.routine.length>0){
+			actor.currentActionIndex = (actor.currentActionIndex + 1) % actor.routine.length;
+			console.log(actor.routine.length+" "+actor.currentActionIndex);
+			var action = actor.routine[actor.currentActionIndex];
+			console.log(JSON.stringify(action));
+			switch (action[0]){
+				case "walk": 
+					actor.goal = {x: action[1], y: action[2]};
+					player.next = null;
+					break;
+				case "wait":
+					actor.waitTimeElapsed = 0;
+					actor.waitFor = action[1];
+					actor.waiting = true;
+					break;
+				case "dir":
+					setVisualRotation(actor, action[1]);
+					break;
+			}
+		}
+	}
 	if (!actor.goal) {
 		return;
 	}

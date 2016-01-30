@@ -1,4 +1,4 @@
-function loadLevel (num) {
+function loadLevel(num) {
 	var levelData = levels[num];
 
 	if (!state) {
@@ -19,10 +19,17 @@ function loadLevel (num) {
 	};
 
 	var playerPos = levelData.player;
-	if (!player) {
-		player = {
-			startingPos : playerPos,
-			dir : "n"
-		};
+	player = {
+		startingPos : playerPos,
+		dir : "s"
+	};
+	guards = levelData.guards;
+	for(var i=0; i<guards.length; ++i){
+		guard = guards[i];
+		guard.startingPos = {x: guard.x, y: guard.y};
+		guard.currentActionIndex = -1;
+		guard.waitTimeElapsed = 0;
+		guard.waitFor = 0;
+		guard.waiting = true;
 	}
 }
