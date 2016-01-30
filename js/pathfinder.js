@@ -90,5 +90,5 @@ function find_path(startX, startY, endX, endY){
 		}
 	}
 	//console.log("Move to: "+moveX+", "+moveY);
-	return [moveX, moveY];
+	return {x: moveX, y: moveY};
 }
