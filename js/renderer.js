@@ -1,9 +1,38 @@
 
 function renderInit() {
 	renderer = PIXI.autoDetectRenderer(1280, 720);
-	document.body.appendChild(renderer.view);
+	$('#mainMenu').after(renderer.view);
 
 	stage = new PIXI.Container();
+}
+
+function startGame(){
+	loadLevel(0);
+
+	renderInit();
+	renderLevel();
+	startUpdate();
+
+	addMouseHandler();
+
+	gameStartTime = Date.now();
+	currentTime = gameStartTime;
+
+	lastUpdate = currentTime;
+	setInterval(function updateLoop() {
+		var now = lastUpdate + STEP_TIME
+		updateActor(player, now);
+		for (var i=0; i<guards.length; ++i){
+			updateActor(guards[i], now);
+		}
+		updateLevel(now);
+		lastUpdate = now;
+	}, STEP_TIME);
+	$('#mainMenu').hide();
+	$('canvas').show();
+}
+
+function pauseGame(){
 }
 
 function update() {

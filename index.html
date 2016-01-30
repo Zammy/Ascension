@@ -1,5 +1,7 @@
 <html>
 <head>
+<title>Ascension</title>
+<link rel="stylesheet" type="text/css" href="css/main.css"/>
 <script type="text/javascript" src="js/jquery-2.2.0.min.js"></script>
 <script type="text/javascript" src="js/pixi.js"></script>
 <script type="text/javascript" src="js/util.js"></script>
@@ -13,33 +15,67 @@
 <script type="text/javascript" src="js/player.js"></script>
 <script type="text/javascript">
 $(function() {
-  
-    loadLevel(0);
-
-    renderInit();
-    renderLevel();
-    startUpdate();
-
-    addMouseHandler();
-
-    gameStartTime = Date.now();
-    currentTime = gameStartTime;
-
-    lastUpdate = currentTime;
-    setInterval(function updateLoop() {
-        var now = lastUpdate + STEP_TIME
-        updateActor(player, now);
-        for (var i=0; i<guards.length; ++i){
-            updateActor(guards[i], now);
-        }
-        updateLevel(now);
-        lastUpdate = now;
-    }, STEP_TIME);
-
+	$('#btnPlay').click(startGame);
+	var credits = ['Evgeni Petrov - Dev', 'Kostadin Vodenicharov - Dev', 'Todor Imreorov -  Animator, Environment Art' , 'Martin Boydov - Level Design', 'Jordan Panov - Level design'];
+	shuffle(credits);
+	var logstr = 'Credits\n-------\n';
+	for (var i=0;i<credits.length;++i){
+		$('#creditsNames').append('<p>'+credits[i]+'</p>');
+		logstr+=credits[i]+'\n';
+	}
+	console.log(logstr);
+	$('#credits').click(function(){
+		$('#credits').hide();
+		$('#mainMenu').show();
+	});
+	$('#btnCredits').click(function(){
+		$('#mainMenu').hide();
+		$('#credits').show();
+	});
 });
 </script>
 </head>
 <body style="background-color:black;">
+	<div id="container">
+		<div id="screen">
+			<div id="mainMenu" style="display:block;">
+				<!--video width="1024" height="576" autoplay id="introVideo" poster="img/poster.png">
+					<source src="video/intro.mp4" type="video/mp4" />
+				</video-->
+				<div id="btnPlay">Play</div>
+				<div id="btnCredits">Credits</div>
+				<!--video width="1024" height="576" id="titleLoop" style="display: none;">
+					<source src="video/loop.mp4" type="video/mp4" />
+				</video-->
+			</div>
+			<div id="credits" class="gameScreen" style="display:none;">
+				<div id="creditsTitle">
+					Credits
+				</div>
+				<div id="creditsNames">
+				</div>
+			</div>
+			<div id="transition" class="gameScreen" style="display:none;">
+				Level <span id="levelNumber"></span>
+				<div id="instructions">
+					<p id="controls">
+						CONTROLS<br/>
+						Click/Tap to move or interact<br/>
+						M - Toggle sound<br/>
+						P - Pause<br/>
+					</p>
+				</div>
+			</div>
+			<div id="level" class="gameScreen" style="display:none;">
+			</div>
+			<div id="gameOver" class="gameScreen" style="display:none;">
+				Game Over
+			</div>
+			<div id="youWin" style="display:none;">
+				YOU WIN
+			</div>
+		</div>
+	</div>
 </body>
 </html>
 
