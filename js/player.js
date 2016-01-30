@@ -29,14 +29,15 @@ function movePlayer(now) {
 	pointAdd(player.container.position, delta);
 	delta = pointSubtract(realNext, player.container.position);
 	var length = sqrVecLength(delta);
-	if (length < 3) {
-		player.container.position = realNext;
-		//we have arrived
-		if (sqrDist(player.next, player.goal) < ZERO_EPS) {
-			player.goal = null;
-			player.next = null;
-		} else {
-			player.next = find_path(playerMapPos.x, playerMapPos.y, player.goal.x, player.goal.y);
-		}
+	if (length > 3 ) {
+		return;
+	}
+	//we have arrived
+	player.container.position = realNext;
+	if (sqrDist(player.next, player.goal) < ZERO_EPS) {
+		player.goal = null;
+		player.next = null;
+	} else {
+		player.next = find_path(playerMapPos.x, playerMapPos.y, player.goal.x, player.goal.y);
 	}
 }
