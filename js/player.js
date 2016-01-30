@@ -125,7 +125,7 @@ function setNext(actor) {
 	calcActorRot(actor);
 }
 
-function updateActor(actor, now) {
+function updateActor(actor, now, speed) {
 	// AI routines
 	if (actor.waiting){
 		actor.waitTimeElapsed += STEP_TIME;
@@ -201,7 +201,7 @@ function updateActor(actor, now) {
 	var realNext = mapToRealPos( actor.next );
 	var delta = pointSubtract(realNext, actor.container.position);
 	normalize(delta)
-	scaleVector(delta, STEP_TIME * PLAYER_SPEED / PLAYER_COMPLETE_MOVEMENT_MS);
+	scaleVector(delta, STEP_TIME * speed / PLAYER_COMPLETE_MOVEMENT_MS);
 	pointAdd(actor.container.position, delta);
 	delta = pointSubtract(realNext, actor.container.position);
 	var length = sqrVecLength(delta);
