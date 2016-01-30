@@ -156,6 +156,7 @@ function updateActor(actor, now) {
 		}
 	}
 	if (!actor.goal) {
+		setVisualRotation(actor, actor.dir);
 		return;
 	}
 	if (!actor.next) {
