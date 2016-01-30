@@ -52,8 +52,8 @@ levels[0] =
 	],
 	"defenition" : 
 	{
-		"w" : { "type" : "wall", "sprite" : "wall.png" , "passable" : false },
-		"o" : { "type" : "floor", "sprite" : "floor.png" , "passable" : true },
+		"w" : { "type" : "wall", "sprite" : "wall1.png" , "passable" : false },
+		"o" : { "type" : "floor", "sprite" : "ground1.png" , "passable" : true },
 		"a" : 
 		{
 			"type" : "altar", 

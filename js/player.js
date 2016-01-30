@@ -44,18 +44,62 @@ function playerClickedOn(pos) {
 }
 
 function setVisualRotation(actor, dir){
+	if (actor.animations) {
+		for (var key in actor.animations) {
+			var clip = actor.animations[key];
+			if (clip.playing) {
+				clip.stop();
+			}
+			clip.visible = false;
+		}
+	}
+
 	switch(dir){
 		case 'w':
-			actor.container.rotation =  Math.PI*1.5;
+			if (actor.goal && actor.animations.walkLeft) {
+				actor.animations.walkLeft.play();
+				actor.animations.walkLeft.visible = true;
+			} else if (actor.animations.idleLeft) {
+				actor.animations.idleLeft.play();
+				actor.animations.idleLeft.visible = true;
+			} else {
+				actor.container.rotation =  Math.PI*1.5;
+			}
 			break;
 		case 'e':
-			actor.container.rotation =  Math.PI/2;
+			if (actor.goal && actor.animations.walkRight) {
+				actor.animations.walkRight.play();
+				actor.animations.walkRight.visible = true;
+			} else if (actor.animations.idleRight) {
+				actor.animations.idleRight.play();
+				actor.animations.idleRight.visible = true;
+			} else {
+				actor.container.rotation =  Math.PI/2;
+			}
 			break;
 		case 's':
-			actor.container.rotation =  Math.PI;
+			if (actor.goal && actor.animations.walkDown) {
+				actor.animations.walkDown.play();
+				actor.animations.walkDown.visible = true;
+			} else if (actor.animations.idleDown) {
+				actor.animations.idleDown.play();
+				actor.animations.idleDown.visible = true;
+			} else {
+				actor.container.rotation =  Math.PI;
+			}
 			break;
 		case 'n':
-			actor.container.rotation =  0;
+			if (actor.goal && actor.animations.walkUp) {
+				actor.animations.walkUp.play();
+				actor.animations.walkUp.visible = true;
+			} else if (actor.animations.idleUp) {
+				actor.animations.idleUp.play();
+				actor.animations.idleUp.visible = true;
+			} else {
+				actor.container.rotation =  0;
+			}
+			break;
+		default:
 			break;
 	}
 }
