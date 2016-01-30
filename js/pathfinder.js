@@ -8,7 +8,7 @@ function valid_coords(x, y){
 
 var explore_movements = [[1,0],[0,1],[-1,0],[0,-1]];
 
-function find_path(startX, startY, endX, endY){
+function find_path(startX, startY, endX, endY) {
 	// Survey the currentLevel
 	var passable = [];
 	var dist = []

@@ -55,6 +55,7 @@ function renderPlayer() {
 		}
 
 		var container = new PIXI.Container();
+		container.anchor = 
 		container.addChild(player.animations.standing);
 		container.addChild(player.animations.walking);
 		player.container = container;

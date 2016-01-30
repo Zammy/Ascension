@@ -22,16 +22,21 @@ $(function() {
 
     addMouseHandler();
 
-    var lastUpdate;
+    gameStartTime = Date.now();
+    currentTime = Date.now();
+
+    var lastUpdate = Date.now();
     setInterval(function updateLoop() {
 
         var now = Date.now();
         var dt = now - lastUpdate;
         lastUpdate = now;
 
+        currentTime += dt;
+
         playerUpdate(dt);
 
-    }, 1/30);
+    }, STEP_TIME);
 
 });
 </script>
