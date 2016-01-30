@@ -5,39 +5,35 @@ function playerGoTo(pos) {
 	}
 }
 
-function getPlayerMapPos() {
-	return realToMapPos( player.container.position );
+function getActorMapPos(actor) {
+	return realToMapPos( actor.container.position );
 }
 
-function playerUpdate(now) {
-	if (!player.goal) {
+function updateActor(actor, now) {
+	if (!actor.goal) {
 		return;
 	}
-	var playerMapPos = getPlayerMapPos();
-	if (!player.next) {
-		player.next = find_path(playerMapPos.x, playerMapPos.y, player.goal.x, player.goal.y);
+	var playerMapPos = getActorMapPos(actor);
+	if (!actor.next) {
+		actor.next = find_path(playerMapPos.x, playerMapPos.y, actor.goal.x, actor.goal.y);
 	}
-	movePlayer(now);
-}
-
-function movePlayer(now) {
-	var playerMapPos = getPlayerMapPos();
-	var realNext = mapToRealPos( player.next );
-	var delta = pointSubtract(realNext, player.container.position);
+	var playerMapPos = getActorMapPos(actor);
+	var realNext = mapToRealPos( actor.next );
+	var delta = pointSubtract(realNext, actor.container.position);
 	normalize(delta)
 	scaleVector(delta, STEP_TIME * 100/ PLAYER_COMPLETE_MOVEMENT_MS);
-	pointAdd(player.container.position, delta);
-	delta = pointSubtract(realNext, player.container.position);
+	pointAdd(actor.container.position, delta);
+	delta = pointSubtract(realNext, actor.container.position);
 	var length = sqrVecLength(delta);
 	if (length > 3 ) {
 		return;
 	}
 	//we have arrived
-	player.container.position = realNext;
-	if (sqrDist(player.next, player.goal) < ZERO_EPS) {
-		player.goal = null;
-		player.next = null;
+	actor.container.position = realNext;
+	if (sqrDist(actor.next, actor.goal) < ZERO_EPS) {
+		actor.goal = null;
+		actor.next = null;
 	} else {
-		player.next = find_path(playerMapPos.x, playerMapPos.y, player.goal.x, player.goal.y);
+		actor.next = find_path(playerMapPos.x, playerMapPos.y, actor.goal.x, actor.goal.y);
 	}
 }
