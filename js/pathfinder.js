@@ -78,6 +78,7 @@ function find_path(startX, startY, endX, endY) {
 					if (valid_coords(newX, newY)){
 						if (dist[newY][newX] ==(dist[y][x] - 1)){
 							reverse.push([newX, newY]);
+							break;
 						}
 					}
 				}
