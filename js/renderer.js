@@ -219,7 +219,7 @@ function renderGuards(){
 			var leftAnimFrames = [];
 			var upAnimFrames = [];
 			var downAnimFrames = [];
-			for (var i = 0; i < 7; i++) {
+			for (var i = 0; i < 8; i++) {
 				var iStr = i < 10 ? "0" + i : i.toString();
 				var texture = PIXI.Texture.fromFrame('guard_1_right_' + iStr + '.png');
 				rightAnimFrames[i] = texture;
