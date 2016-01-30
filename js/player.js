@@ -11,9 +11,15 @@ var interactableTiles = {
 		for (var y = 0; y < currentLevel.length; y++) {
 			var row = currentLevel[y];
 			for (var x = 0; x < row.length; x++) {
-				var tile = row[x];
-				if (tile.type == "door") {
-					tile.open();
+				var tiles = row[x];
+				if (!(tiles.constructor === Array)){
+					tiles = [tiles];
+				}
+				for (var i=0;i<tiles.length;++i){
+					var tile = tiles[i];
+					if (tile.type == "door") {
+						tile.open();
+					}
 				}
 			}
 		};
@@ -79,7 +85,6 @@ function updateActor(actor, now) {
 	// AI routines
 	if (actor.waiting){
 		actor.waitTimeElapsed += STEP_TIME;
-		console.log(actor.waitTimeElapsed+" "+actor.waitFor+" "+actor.waiting);
 		if (actor.waitFor <= actor.waitTimeElapsed){
 			actor.waiting = false;
 		} else {
@@ -117,8 +122,33 @@ function updateActor(actor, now) {
 		delta_player = pointSubtract(player.container.position, actor.container.position);
 		if ((sqrVecLength(delta_player)<=Math.pow(TILE_WIDTH*3,2)) && ((delta_player.x==0)||(delta_player.y==0))){
 			if (((actor.dir=='n')&&(delta_player.y<0))||((actor.dir=='s')&&(delta_player.y>0))||((actor.dir=='w')&&(delta_player.x<0))||((actor.dir=='e')&&(delta_player.x>0))){
-				// You are captured.
-				playerDied();
+				// Check for obstructions
+				no_obstructions = true;
+				var currentLevel = state.currentLevel;
+				for (var y = 0; y < currentLevel.length; y++) {
+					var row = currentLevel[y];
+					for (var x = 0; x < row.length; x++) {
+						tilePos = mapToRealPos({x: x, y: y});
+						if (((delta_player.x==0)&&(tilePos.x==player.container.position.x)&&(((player.container.position.y<=tilePos.y)&&(tilePos.y<=actor.container.y))||((actor.container.position.y<=tilePos.y)&&(tilePos.y<=player.container.y))))||
+							((delta_player.y==0)&&(tilePos.y==player.container.position.y)&&(((player.container.position.x<=tilePos.x)&&(tilePos.x<=actor.container.x))||((actor.container.position.x<=tilePos.x)&&(tilePos.x<=player.container.x))))){
+							var tiles = row[x];
+							if (!(tiles.constructor === Array)){
+								tiles = [tiles];
+							}
+							for (var i=0;i<tiles.length;++i){
+								var tile = tiles[i];
+								if (!tile.passable) {
+									no_obstructions = false;
+									break;
+								}
+							}
+						}
+					}
+				};
+				if (no_obstructions){
+					// You are captured.
+					playerDied();
+				}
 			}
 		}
 	}
