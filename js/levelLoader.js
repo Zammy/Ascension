@@ -60,6 +60,14 @@ var interactableUpdates = {
 		if (sqrDist(playerMapPos, spikesMapPos) < 1) {
 			playerDied();
 		}
+	},
+
+	"door" : function(door, x, y) {
+		var playerMapPos = realToMapPos( player.container.position );
+		var doorMapPos = realToMapPos( door.spriteOpenned.position );
+		if (sqrDist(playerMapPos, doorMapPos) < 1) {
+			goToNextLevel();
+		}
 	}
 }
 
