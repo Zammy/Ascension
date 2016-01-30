@@ -183,11 +183,18 @@ function renderGuards(){
 				standing : standing
 				// walking : walkingAnim
 			}
-
+			
+			var torchTexture = new PIXI.Texture.fromImage('assets/torch.png');
+			var torch = new PIXI.Sprite(torchTexture);
+			torch.position = new PIXI.Point(-160, -160);
+			torch.blendMode = PIXI.BLEND_MODES.SCREEN;
+			
 			var container = new PIXI.Container();
 			container.anchor = new PIXI.Point(0.5, 0.5);
+			
 			container.addChild(guard.animations.standing);
 			// container.addChild(guard.animations.walking);
+			container.addChild(torch);
 			guard.container = container;
 		}
 	 
