@@ -1,5 +1,20 @@
 function playerGoTo(pos) {
-	if (!valid_coords(pos.x, pos.y)) {
+	if (valid_coords(pos.x, pos.y)) {
+		var tiles = state.currentLevel[pos.y][pos.x];
+		if (!(tiles.constructor === Array)){
+			tiles = [tiles];
+		}
+		var pass = true;
+		for (var i=0; i < tiles.length; ++i) {
+			if (!tiles[i].passable){
+				pass = false;
+				break;
+			}
+		}
+		if (!pass){
+			return;
+		}
+	} else {
 		return;
 	}
 	if (player.goal && sqrDist( player.goal, pos) < 10 ) {
