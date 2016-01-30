@@ -2,11 +2,13 @@
 <head>
 <script type="text/javascript" src="js/jquery-2.2.0.min.js"></script>
 <script type="text/javascript" src="js/pixi.js"></script>
+<script type="text/javascript" src="js/util.js"></script>
 <script type="text/javascript" src="js/global.js"></script>
 <script type="text/javascript" src="levels/level0.js"></script>
 <script type="text/javascript" src="js/levelLoader.js"></script>
 <script type="text/javascript" src="js/renderer.js"></script>
 <script type="text/javascript" src="js/input.js"></script>
+<script type="text/javascript" src="js/player.js"></script>
 <script type="text/javascript">
 $(function() {
   
@@ -18,7 +20,16 @@ $(function() {
 
     addMouseHandler();
 
-    
+    var lastUpdate;
+    setInterval(function updateLoop() {
+
+        var now = Date.now();
+        var dt = now - lastUpdate;
+        lastUpdate = now;
+
+        playerUpdate(dt);
+
+    }, 1/30);
 
 });
 </script>

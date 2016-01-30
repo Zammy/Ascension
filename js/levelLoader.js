@@ -18,4 +18,12 @@ function loadLevel (num) {
 		  	currentLevel[y].push(tile);
 		 };
 	};
+
+	var playerPos = levelData.player;
+	if (!player) {
+		player = {
+			startingPos : playerPos,
+			dir : "n"
+		};
+	}
 }

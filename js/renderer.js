@@ -16,9 +16,6 @@ function startUpdate() {
 }
 
 function renderLevel() {
-	var height = 64;
-	var width = 64;
-
 	stage.removeChildren();
 
  	var currentLevel = state.currentLevel;
@@ -26,11 +23,45 @@ function renderLevel() {
 		 for (var x = 0; x < currentLevel[y].length; x++) {
 		  	var tile = currentLevel[y][x];
 		  	var sprite = PIXI.Sprite.fromImage("assets/" + tile.sprite);
-		  	sprite.position.x = width * x;
-		  	sprite.position.y = height * y;
+		  	sprite.position.x = TILE_WIDTH * x;
+		  	sprite.position.y = TILE_HEIGHT * y;
 		  	stage.addChild(sprite);
 		  	tile.sprite = sprite;
 		 };
 	};
+
+	renderPlayer();
+}
+
+function renderPlayer() {
+	if (!player.baseTexture) {
+		player.baseTexture = PIXI.Texture.fromImage('assets/bkspr01.png');
+
+		var standing = new PIXI.Texture(player.baseTexture, new PIXI.Rectangle(25, 25, 87, 97) )
+		var walking = 
+		[
+			new PIXI.Texture(player.baseTexture, new PIXI.Rectangle(25, 157, 87, 97) ),
+			new PIXI.Texture(player.baseTexture, new PIXI.Rectangle(25, 296, 87, 97) ),
+		];
+
+		var walkingAnim = new PIXI.extras.MovieClip(walking);
+		walkingAnim.visible = false;
+		walkingAnim.animationSpeed = 0.08;
+
+		player.animations =
+		{
+			standing : new PIXI.Sprite(standing),
+			walking : walkingAnim
+		}
+
+		var container = new PIXI.Container();
+		container.addChild(player.animations.standing);
+		container.addChild(player.animations.walking);
+		player.container = container;
+	}
+
+	var startPos = player.startingPos;
+	player.container.position = new PIXI.Point( startPos.x * TILE_WIDTH, startPos.y * TILE_HEIGHT);
+	stage.addChild(player.container);
 }
 
