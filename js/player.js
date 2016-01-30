@@ -13,15 +13,15 @@ function playerUpdate(now) {
 		return;
 	}
 	var playerMapPos = getPlayerMapPos();
-	if (!player.next){
+	if (!player.next) {
 		player.next = find_path(playerMapPos.x, playerMapPos.y, player.goal.x, player.goal.y);
 		player.timeArrived = now;
+		player.oldTilePos = mapToRealPos(realToMapPos(player.container.position));
 	}
 	if (player.next) {
 		//debugger;
 		var realNext = mapToRealPos( player.next );
-		var oldPos = mapToRealPos(realToMapPos(player.container.position));
-		var delta = pointSubtract(realNext, oldPos);
+		var delta = pointSubtract(realNext, player.container.position);
 		var length = sqrVecLength(delta);
 		if (length < 0.25) {
 			//we have arrived
