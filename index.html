@@ -5,6 +5,7 @@
 <script type="text/javascript" src="js/global.js"></script>
 <script type="text/javascript" src="levels/level0.js"></script>
 <script type="text/javascript" src="js/levelLoader.js"></script>
+<script type="text/javascript" src="js/pathfinder.js"></script>
 <script type="text/javascript" src="js/renderer.js"></script>
 <script type="text/javascript">
 $(function() {
@@ -13,12 +14,13 @@ $(function() {
 
     renderInit();
     renderLevel();
+    find_path(1,1,15,5);
     startUpdate();
   
 });
 </script>
 </head>
-<body>
+<body style="background-color:black;">
 </body>
 </html>
 
