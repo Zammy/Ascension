@@ -1,6 +1,7 @@
 function playerGoTo(pos) {
 	if (valid_coords(pos.x, pos.y)) {
 		player.goal = pos;
+		player.next = null;
 	}
 }
 
@@ -15,27 +16,27 @@ function playerUpdate(now) {
 	var playerMapPos = getPlayerMapPos();
 	if (!player.next) {
 		player.next = find_path(playerMapPos.x, playerMapPos.y, player.goal.x, player.goal.y);
-		player.timeArrived = now;
-		player.oldTilePos = mapToRealPos(realToMapPos(player.container.position));
 	}
-	if (player.next) {
-		//debugger;
-		var realNext = mapToRealPos( player.next );
-		var delta = pointSubtract(realNext, player.container.position);
-		var length = sqrVecLength(delta);
-		if (length < 0.25) {
-			//we have arrived
-			player.next = find_path(playerMapPos.x, playerMapPos.y, player.goal.x, player.goal.y);
-			player.timeArrived = now;
-			if (sqrDist(player.next, player.goal) < ZERO_EPS){
-				player.goal = null;
-				player.next = null;
-			}
+	movePlayer(now);
+}
+
+function movePlayer(now) {
+	var playerMapPos = getPlayerMapPos();
+	var realNext = mapToRealPos( player.next );
+	var delta = pointSubtract(realNext, player.container.position);
+	normalize(delta)
+	scaleVector(delta, STEP_TIME * 100/ PLAYER_COMPLETE_MOVEMENT_MS);
+	pointAdd(player.container.position, delta);
+	delta = pointSubtract(realNext, player.container.position);
+	var length = sqrVecLength(delta);
+	if (length < 3) {
+		player.container.position = realNext;
+		//we have arrived
+		if (sqrDist(player.next, player.goal) < 3) {
+			player.goal = null;
+			player.next = null;
 		} else {
-			//move towards next tile
-			var scale = (now - player.timeArrived) / PLAYER_COMPLETE_MOVEMENT_MS;
-			scaleVector(delta, scale);
-			pointAdd(player.container.position, delta);
+			player.next = find_path(playerMapPos.x, playerMapPos.y, player.goal.x, player.goal.y);
 		}
 	}
 }

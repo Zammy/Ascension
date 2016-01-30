@@ -24,8 +24,18 @@ function sqrVecLength(a) {
 	return a.x*a.x + a.y*a.y;
 }
 
+function vecLength(a) {
+	return Math.sqrt(sqrVecLength(a));
+}
+
 function sqrDist(a, b){
 	var dx = a.x - b.x;
 	var dy = a.y - b.y;
 	return dx*dx+dy*dy;
+}
+
+function normalize(a) {
+	var l = vecLength(a);
+	a.x = a.x / l;
+	a.y = a.y / l;
 }
