@@ -37,27 +37,29 @@ function renderPlayer() {
 	if (!player.baseTexture) {
 		player.baseTexture = PIXI.Texture.fromImage('assets/P.png');//PIXI.Texture.fromImage('assets/bkspr01.png');
 
-		var standing = new PIXI.Texture(player.baseTexture, new PIXI.Rectangle(0, 0, 64, 64) )
-		var walking = 
-		[
-			new PIXI.Texture(player.baseTexture, new PIXI.Rectangle(25, 157, 87, 97) ),
-			new PIXI.Texture(player.baseTexture, new PIXI.Rectangle(25, 296, 87, 97) ),
-		];
+		var standingTexture = new PIXI.Texture(player.baseTexture, new PIXI.Rectangle(0, 0, 64, 64) );
+		// var walking = 
+		// [
+		// 	new PIXI.Texture(player.baseTexture, new PIXI.Rectangle(25, 157, 87, 97) ),
+		// 	new PIXI.Texture(player.baseTexture, new PIXI.Rectangle(25, 296, 87, 97) ),
+		// ];
 
-		var walkingAnim = new PIXI.extras.MovieClip(walking);
-		walkingAnim.visible = false;
-		walkingAnim.animationSpeed = 0.08;
+		// var walkingAnim = new PIXI.extras.MovieClip(walking);
+		// walkingAnim.visible = false;
+		// walkingAnim.animationSpeed = 0.08;
 
+		var standing = new PIXI.Sprite(standingTexture);
+		standing.position = new PIXI.Point(-TILE_WIDTH/2, -TILE_HEIGHT/2);
 		player.animations =
 		{
-			standing : new PIXI.Sprite(standing),
-			walking : walkingAnim
+			standing : standing
+			// walking : walkingAnim
 		}
 
 		var container = new PIXI.Container();
 		container.anchor = new PIXI.Point(0.5, 0.5);
 		container.addChild(player.animations.standing);
-		container.addChild(player.animations.walking);
+		// container.addChild(player.animations.walking);
 		player.container = container;
 	}
 
