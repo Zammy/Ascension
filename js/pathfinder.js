@@ -60,7 +60,7 @@ function find_path(startX, startY, endX, endY){
 		}
 	}
 	//console.log("dist:")
-	console.log(JSON.stringify(dist));
+	// console.log(JSON.stringify(dist));
 	// Construct the way back, if a path is found
 	if (path_found) {
 		//console.log("Distance: "+dist[endY][endX]);
