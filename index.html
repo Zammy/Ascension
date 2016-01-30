@@ -6,6 +6,7 @@
 <script type="text/javascript" src="js/global.js"></script>
 <script type="text/javascript" src="levels/level0.js"></script>
 <script type="text/javascript" src="js/levelLoader.js"></script>
+<script type="text/javascript" src="js/pathfinder.js"></script>
 <script type="text/javascript" src="js/renderer.js"></script>
 <script type="text/javascript" src="js/input.js"></script>
 <script type="text/javascript" src="js/player.js"></script>
@@ -16,6 +17,7 @@ $(function() {
 
     renderInit();
     renderLevel();
+    find_path(1,1,15,5);
     startUpdate();
 
     addMouseHandler();
@@ -34,7 +36,7 @@ $(function() {
 });
 </script>
 </head>
-<body>
+<body style="background-color:black;">
 </body>
 </html>
 
