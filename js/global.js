@@ -11,4 +11,6 @@ var player = null;
 var gameStartTime = null;
 var currentTime = null;
 
-var STEP_TIME = 1000/30;
+var STEP_TIME = Math.floor(1000/30);
+var PLAYER_COMPLETE_MOVEMENT_MS = 1000;
+var ZERO_EPS = 0.1;

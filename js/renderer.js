@@ -35,9 +35,9 @@ function renderLevel() {
 
 function renderPlayer() {
 	if (!player.baseTexture) {
-		player.baseTexture = PIXI.Texture.fromImage('assets/bkspr01.png');
+		player.baseTexture = PIXI.Texture.fromImage('assets/P.png');//PIXI.Texture.fromImage('assets/bkspr01.png');
 
-		var standing = new PIXI.Texture(player.baseTexture, new PIXI.Rectangle(25, 25, 87, 97) )
+		var standing = new PIXI.Texture(player.baseTexture, new PIXI.Rectangle(0, 0, 64, 64) )
 		var walking = 
 		[
 			new PIXI.Texture(player.baseTexture, new PIXI.Rectangle(25, 157, 87, 97) ),
@@ -55,14 +55,15 @@ function renderPlayer() {
 		}
 
 		var container = new PIXI.Container();
-		container.anchor = 
+		container.anchor = new PIXI.Point(0.5, 0.5);
 		container.addChild(player.animations.standing);
 		container.addChild(player.animations.walking);
 		player.container = container;
 	}
 
 	var startPos = player.startingPos;
-	player.container.position = new PIXI.Point( startPos.x * TILE_WIDTH, startPos.y * TILE_HEIGHT);
+	var realPos = mapToRealPos(startPos);
+	player.container.position = new PIXI.Point(realPos.x, realPos.y);
 	stage.addChild(player.container);
 }
 

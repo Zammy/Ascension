@@ -23,19 +23,13 @@ $(function() {
     addMouseHandler();
 
     gameStartTime = Date.now();
-    currentTime = Date.now();
+    currentTime = gameStartTime;
 
-    var lastUpdate = Date.now();
+    lastUpdate = currentTime;
     setInterval(function updateLoop() {
-
-        var now = Date.now();
-        var dt = now - lastUpdate;
+        var now = lastUpdate + STEP_TIME
+        playerUpdate(now);
         lastUpdate = now;
-
-        currentTime += dt;
-
-        playerUpdate(dt);
-
     }, STEP_TIME);
 
 });
