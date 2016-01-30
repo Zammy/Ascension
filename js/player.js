@@ -2,31 +2,11 @@ function playerGoTo(pos) {
 	if (!valid_coords(pos.x, pos.y)) {
 		return;
 	}
-
-	player.goal = pos;
-	// player.next = null
-	if (player.next) {
-		console.log("player.prev : " + JSON.stringify(player.prev) );
-		console.log("player.next : " + JSON.stringify(player.next) );
-
-		var dataPrev = find_path(player.prev.x, player.prev.y, player.goal.x, player.goal.y);
-		var dataNext = find_path(player.next.x, player.next.y, player.goal.x, player.goal.y);
-		
-		console.log("dataPrev : " + JSON.stringify(dataPrev) );
-		console.log("dataNext : " +  JSON.stringify(dataNext) );
-
-		if (dataPrev.dist > dataNext.dist) {
-			console.log("dataPrev!!!" );
-			player.next = dataPrev;
-			player.prev = dataNext;
-		} else {
-			console.log("dataNext!!!" );
-			player.next = dataNext;
-			player.prev = dataPrev;
-		}
-
-		calcActorRot(player);
+	if (player.goal && sqrDist( player.goal, pos) < 10 ) {
+		return;
 	}
+	player.goal = pos;
+	player.next = null
 }
 
 function calcActorRot(actor) {
