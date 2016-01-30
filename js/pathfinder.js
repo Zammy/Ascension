@@ -1,6 +1,17 @@
 function valid_coords(x, y){
 	if ((x>=0)&&(y>=0)&&(y<state.currentLevel.length)&&(x<state.currentLevel[y].length)){
-		return true;
+		var tiles = state.currentLevel[y][x];
+		if (!(tiles.constructor === Array)){
+			tiles = [tiles];
+		}
+		var pass = true;
+		for (var i=0; i < tiles.length; ++i) {
+			if (!tiles[i].passable){
+				pass = false;
+				break;
+			}
+		}
+		return pass;
 	} else {
 		return false;
 	}

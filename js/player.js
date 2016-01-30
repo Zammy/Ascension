@@ -1,27 +1,29 @@
-function playerGoTo(pos) {
+var interactableTiles = {
+	"altar" : function(altar) {
+		if (altar.visited)
+			return;
+
+		altar.visited = true;
+		stage.removeChild(altar.spriteNotVisited);
+		stage.addChild(altar.spriteVisited);
+	}
+}
+
+function playerClickedOn(pos) {
 	if (valid_coords(pos.x, pos.y)) {
-		var tiles = state.currentLevel[pos.y][pos.x];
-		if (!(tiles.constructor === Array)){
-			tiles = [tiles];
-		}
-		var pass = true;
-		for (var i=0; i < tiles.length; ++i) {
-			if (!tiles[i].passable){
-				pass = false;
-				break;
-			}
-		}
-		if (!pass){
+		//it is the same goal
+		if (player.goal && sqrDist( player.goal, pos) < 1 ) {
 			return;
 		}
+		player.goal = pos;
+		player.next = null;
 	} else {
-		return;
+		var tile = state.currentLevel[pos.y][pos.x];
+		var playerMapPos = realToMapPos( player.container.position );
+		if (sqrDist(playerMapPos, pos) < 2 && interactableTiles[tile.type]) {
+			interactableTiles[tile.type](tile);
+		}
 	}
-	if (player.goal && sqrDist( player.goal, pos) < 10 ) {
-		return;
-	}
-	player.goal = pos;
-	player.next = null;
 }
 
 function setVisualRotation(actor, dir){
