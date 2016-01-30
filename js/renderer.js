@@ -15,19 +15,39 @@ function startUpdate() {
     requestAnimationFrame( update );
 }
 
+var typeLoader = {
+	"altar" : function altarLoader(altar, x, y) {
+		var notVisited = PIXI.Sprite.fromImage("assets/" + altar.sprites.notVisited);
+		notVisited.position.x = TILE_WIDTH * x;
+		notVisited.position.y = TILE_HEIGHT * y;
+		stage.addChild(notVisited);
+		altar.spriteNotVisited = notVisited;
+
+		var visited = PIXI.Sprite.fromImage("assets/" + altar.sprites.visited);
+		visited.position.x = TILE_WIDTH * x;
+		visited.position.y = TILE_HEIGHT * y;
+		altar.spriteVisited = visited;
+	}
+}
+
 function renderLevel() {
 	stage.removeChildren();
 
  	var currentLevel = state.currentLevel;
 	for (var y = 0; y < currentLevel.length; y++) {
-		 for (var x = 0; x < currentLevel[y].length; x++) {
-		  	var tile = currentLevel[y][x];
-		  	var sprite = PIXI.Sprite.fromImage("assets/" + tile.sprite);
-		  	sprite.position.x = TILE_WIDTH * x;
-		  	sprite.position.y = TILE_HEIGHT * y;
-		  	stage.addChild(sprite);
-		  	tile.sprite = sprite;
-		 };
+		for (var x = 0; x < currentLevel[y].length; x++) {
+			var tile = currentLevel[y][x];
+			if (typeLoader[tile.type]) {
+				typeLoader[tile.type](tile, x, y);
+			} else {
+				var sprite = PIXI.Sprite.fromImage("assets/" + tile.sprite);
+				sprite.position.x = TILE_WIDTH * x;
+				sprite.position.y = TILE_HEIGHT * y;
+				stage.addChild(sprite);
+				tile.sprite = sprite;
+			}
+
+		};
 	};
 
 	renderPlayer();

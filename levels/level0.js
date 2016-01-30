@@ -38,7 +38,7 @@ levels[0] =
 	],
 	"map" :
 	[
-		[ "w", "w" , "w", "w", "w", "w", "w", "w", "w", "w", "w", "w", "w", "w", "w", "w" , "w", "w", "w", "w"],
+		[ "w", "w" , "a", "w", "w", "w", "w", "w", "w", "w", "w", "w", "w", "w", "w", "w" , "w", "w", "w", "w"],
 		[ "w", "o" , "o", "o", "o", "o", "o", "o", "o", "o", "o", "o", "o", "o", "o", "o" , "o", "o", "o", "w"],
 		[ "w", "o" , "w", "w", "w", "w", "w", "w", "w", "w", "w", "w", "w", "w", "w", "w" , "w", "w", "o", "w"],
 		[ "w", "o" , "w", "w", "w", "w", "w", "w", "w", "w", "w", "w", "w", "w", "w", "w" , "w", "w", "o", "w"],
@@ -54,5 +54,14 @@ levels[0] =
 	{
 		"w" : { "type" : "wall", "sprite" : "wall.png" , "passable" : false },
 		"o" : { "type" : "floor", "sprite" : "floor.png" , "passable" : true },
+		"a" : 
+		{
+			"type" : "altar", 
+			"passable" : false,
+			"sprites" : {
+				"notVisited" : "altar.png",
+				"visited" : "altar_visited.png"
+			}
+		}
 	}
 };
