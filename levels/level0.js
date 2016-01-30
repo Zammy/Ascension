@@ -42,7 +42,7 @@ levels[0] =
 		[ "w", "o" , "o", "o", "o", "o", "o", "o", "o", "o", "o", "o", "o", "o", "o", "o" , "o", "o", "o", "w"],
 		[ "w", "o" , "w", "w", "w", "w", "w", "w", "w", "w", "w", "w", "w", "w", "w", "w" , "w", "w", "o", "w"],
 		[ "w", "o" , "w", "w", "w", "w", "w", "w", "w", "w", "w", "w", "w", "w", "w", "w" , "w", "w", "o", "w"],
-		[ "w", "o" , "w", "w", "w", "w", "w", "w", "w", "w", "w", "w", "w", "w", "w", "w" , "w", "w", "o", "w"],
+		[ "w", "s" , "w", "w", "w", "w", "w", "w", "w", "w", "w", "w", "w", "w", "w", "w" , "w", "w", "o", "w"],
 		[ "w", "o" , "o", "o", "o", "o", "o", "o", "o", "o", "o", "o", "o", "o", "o", "o" , "o", "o", "o", "w"],
 		[ "w", "o" , "w", "w", "w", "w", "w", "w", "w", "w", "w", "w", "w", "w", "w", "w" , "w", "w", "o", "w"],
 		[ "w", "o" , "w", "w", "w", "w", "w", "w", "w", "w", "w", "w", "w", "w", "w", "w" , "w", "w", "o", "w"],
@@ -61,6 +61,15 @@ levels[0] =
 			"sprites" : {
 				"notVisited" : "altar.png",
 				"visited" : "altar_visited.png"
+			}
+		},
+		"s" :
+		{
+			"type" : "spikes",
+			"passable" : true,
+			"sprites" : {
+				"hidden" : "floor.png",
+				"shown" : "spikes.png"
 			}
 		}
 	}

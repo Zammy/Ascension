@@ -29,6 +29,7 @@ $(function() {
     setInterval(function updateLoop() {
         var now = lastUpdate + STEP_TIME
         updateActor(player, now);
+        updateLevel(now);
         lastUpdate = now;
     }, STEP_TIME);
 
