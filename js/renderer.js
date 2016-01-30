@@ -62,10 +62,11 @@ function renderPlayer() {
 		// container.addChild(player.animations.walking);
 		player.container = container;
 	}
-
-	var startPos = player.startingPos;
+ 
+ 	var startPos = player.startingPos;
 	var realPos = mapToRealPos(startPos);
 	player.container.position = new PIXI.Point(realPos.x, realPos.y);
+	player.prev = startPos;
 	stage.addChild(player.container);
 }
 
