@@ -1,0 +1,95 @@
+{
+"frames": {
+	"player_idle_up_00.png": {
+		"frame": {"x":218, "y":0, "w":49, "h":89},
+		"spriteSourceSize": {"x":8,"y":11,"w":64,"h":110},
+		"sourceSize": {"w":64,"h":110}
+	},
+	"player_idle_up_01.png": {
+		"frame": {"x":216, "y":180, "w":49, "h":89},
+		"spriteSourceSize": {"x":8,"y":11,"w":64,"h":110},
+		"sourceSize": {"w":64,"h":110}
+	},
+	"player_idle_up_02.png": {
+		"frame": {"x":166, "y":0, "w":51, "h":89},
+		"spriteSourceSize": {"x":7,"y":11,"w":64,"h":110},
+		"sourceSize": {"w":64,"h":110}
+	},
+	"player_idle_up_03.png": {
+		"frame": {"x":113, "y":0, "w":52, "h":89},
+		"spriteSourceSize": {"x":7,"y":11,"w":64,"h":110},
+		"sourceSize": {"w":64,"h":110}
+	},
+	"player_idle_up_04.png": {
+		"frame": {"x":112, "y":91, "w":53, "h":89},
+		"spriteSourceSize": {"x":7,"y":11,"w":64,"h":110},
+		"sourceSize": {"w":64,"h":110}
+	},
+	"player_idle_up_05.png": {
+		"frame": {"x":57, "y":91, "w":54, "h":90},
+		"spriteSourceSize": {"x":7,"y":10,"w":64,"h":110},
+		"sourceSize": {"w":64,"h":110}
+	},
+	"player_idle_up_06.png": {
+		"frame": {"x":57, "y":0, "w":55, "h":90},
+		"spriteSourceSize": {"x":6,"y":10,"w":64,"h":110},
+		"sourceSize": {"w":64,"h":110}
+	},
+	"player_idle_up_07.png": {
+		"frame": {"x":0, "y":0, "w":56, "h":90},
+		"spriteSourceSize": {"x":6,"y":10,"w":64,"h":110},
+		"sourceSize": {"w":64,"h":110}
+	},
+	"player_idle_up_08.png": {
+		"frame": {"x":0, "y":91, "w":56, "h":90},
+		"spriteSourceSize": {"x":6,"y":10,"w":64,"h":110},
+		"sourceSize": {"w":64,"h":110}
+	},
+	"player_idle_up_09.png": {
+		"frame": {"x":0, "y":0, "w":56, "h":90},
+		"spriteSourceSize": {"x":6,"y":10,"w":64,"h":110},
+		"sourceSize": {"w":64,"h":110}
+	},
+	"player_idle_up_10.png": {
+		"frame": {"x":57, "y":0, "w":55, "h":90},
+		"spriteSourceSize": {"x":6,"y":10,"w":64,"h":110},
+		"sourceSize": {"w":64,"h":110}
+	},
+	"player_idle_up_11.png": {
+		"frame": {"x":57, "y":91, "w":54, "h":90},
+		"spriteSourceSize": {"x":7,"y":10,"w":64,"h":110},
+		"sourceSize": {"w":64,"h":110}
+	},
+	"player_idle_up_12.png": {
+		"frame": {"x":112, "y":91, "w":53, "h":89},
+		"spriteSourceSize": {"x":7,"y":11,"w":64,"h":110},
+		"sourceSize": {"w":64,"h":110}
+	},
+	"player_idle_up_13.png": {
+		"frame": {"x":113, "y":0, "w":52, "h":89},
+		"spriteSourceSize": {"x":7,"y":11,"w":64,"h":110},
+		"sourceSize": {"w":64,"h":110}
+	},
+	"player_idle_up_14.png": {
+		"frame": {"x":166, "y":90, "w":51, "h":89},
+		"spriteSourceSize": {"x":7,"y":11,"w":64,"h":110},
+		"sourceSize": {"w":64,"h":110}
+	},
+	"player_idle_up_15.png": {
+		"frame": {"x":166, "y":180, "w":49, "h":89},
+		"spriteSourceSize": {"x":8,"y":11,"w":64,"h":110},
+		"sourceSize": {"w":64,"h":110}
+	},
+	"player_idle_up_16.png": {
+		"frame": {"x":218, "y":0, "w":49, "h":89},
+		"spriteSourceSize": {"x":8,"y":11,"w":64,"h":110},
+		"sourceSize": {"w":64,"h":110}
+	}
+
+},
+"meta": {
+	"image": "player_idle_up.png",
+	"size": {"w": 268, "h": 270},
+	"scale": "1"
+}
+}

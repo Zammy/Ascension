@@ -124,6 +124,10 @@ function renderLevel(onLoaded) {
 	loader.add('player_left', 'assets/raw/animation-player/MOVE/render-left/player_left.json');
 	loader.add('player_up', 'assets/raw/animation-player/MOVE/render-back/player_up.json');
 	loader.add('player_down', 'assets/raw/animation-player/MOVE/render-front/player_down.json');
+	loader.add('player_idle_right', 'assets/raw/animation-player/IDLE/render-right/player_idle_right.json');
+	loader.add('player_idle_left', 'assets/raw/animation-player/IDLE/render-left/player_idle_left.json');
+	loader.add('player_idle_up', 'assets/raw/animation-player/IDLE/render-back/player_idle_up.json');
+	loader.add('player_idle_down', 'assets/raw/animation-player/IDLE/render-front/player_idle_down.json');
 	loader.on('complete', function() {
 		renderPlayer();
 		renderGuards();
@@ -152,15 +156,31 @@ function renderPlayer() {
 			downAnimFrames[i] = texture;
 		};
 
+		var rightIdleAnimFrames = [];
+		var leftIdleAnimFrames = [];
+		var upIdleAnimFrames = [];
+		var donwIdleAnimFrames = [];
+		for (var i = 0; i < 16; i++) {
+			var iStr = i < 10 ? "0" + i : i.toString();
+			var texture = PIXI.Texture.fromFrame('player_idle_right_' + iStr + '.png');
+			rightIdleAnimFrames[i] = texture;
+			var texture = PIXI.Texture.fromFrame('player_idle_left_' + iStr + '.png');
+			leftIdleAnimFrames[i] = texture;
+			var texture = PIXI.Texture.fromFrame('player_idle_up_' + iStr + '.png');
+			upIdleAnimFrames[i] = texture;
+			var texture = PIXI.Texture.fromFrame('player_idle_down_' + iStr + '.png');
+			donwIdleAnimFrames[i] = texture;
+		}
+
 		var keyToAnim = {
 			"walkRight" : rightAnimFrames,
 			"walkLeft" : leftAnimFrames,
 			"walkUp" : upAnimFrames,
 			"walkDown" : downAnimFrames,
-			"idleRight" : rightAnimFrames,
-			"idleLeft" : leftAnimFrames,
-			"idleUp" : upAnimFrames,
-			"idleDown" : downAnimFrames
+			"idleRight" : rightIdleAnimFrames,
+			"idleLeft" : leftIdleAnimFrames,
+			"idleUp" : upIdleAnimFrames,
+			"idleDown" : donwIdleAnimFrames
 		}
 		var container = new PIXI.Container();
 		container.anchor = new PIXI.Point(0.5, 0.5);
