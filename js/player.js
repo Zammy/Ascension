@@ -76,6 +76,7 @@ function setNext(actor) {
 }
 
 function updateActor(actor, now) {
+	// AI routines
 	if (actor.waiting){
 		actor.waitTimeElapsed += STEP_TIME;
 		console.log(actor.waitTimeElapsed+" "+actor.waitFor+" "+actor.waiting);
@@ -113,6 +114,17 @@ function updateActor(actor, now) {
 	if (!actor.next) {
 		setNext(actor);
 	}
+	// Check if the guards see the player
+	if ((actor != player)){
+		delta_player = pointSubtract(player.container.position, actor.container.position);
+		if ((sqrVecLength(delta_player)<=Math.pow(TILE_WIDTH*3,2)) && ((delta_player.x==0)||(delta_player.y==0))){
+			if (((actor.dir=='n')&&(delta_player.y<0))||((actor.dir=='s')&&(delta_player.y>0))||((actor.dir=='w')&&(delta_player.x<0))||((actor.dir=='e')&&(delta_player.x>0))){
+				// You are captured.
+				playerDied();
+			}
+		}
+	}
+	// Interpolate movement
 	var realNext = mapToRealPos( actor.next );
 	var delta = pointSubtract(realNext, actor.container.position);
 	normalize(delta)
