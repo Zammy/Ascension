@@ -32,6 +32,10 @@ function playerClickedOn(pos) {
 		if (player.goal && sqrDist( player.goal, pos) < 1 ) {
 			return;
 		}
+		if (!player.goal){
+			stepsFX.currentTime = 0;
+			stepsFX.play();
+		}
 		player.goal = pos;
 		player.next = null;
 		setVisualRotation(player, player.dir);
@@ -229,6 +233,8 @@ function playerDied(now) {
 	//loadLevel(state.currentLevelIndex);
 	//renderLevel();
 	// Code above moved to renderer
+	stepsFX.pause();
+	spikesFX.pause();
 	restartingSince = now;
 	restartingUntil = now + restartingLengthMS;
 	restarting = true;
