@@ -331,7 +331,7 @@ function renderLevel(onLoaded) {
 	darkSprite.position.x = 0;
 	darkSprite.position.y = 0;
 	stage.addChild(darkSprite);
-	restartingSprite = PIXI.Sprite.fromImage("assets/restarting.png");
+	restartingSprite = PIXI.Sprite.fromImage("assets/ASCENTION-title-and-gameOver.png");
 	restartingSprite.position.x = 0;
 	restartingSprite.position.y = 0;
 	restartingSprite.alpha = 0;
