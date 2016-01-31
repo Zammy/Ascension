@@ -215,7 +215,7 @@ function updateActor(actor, now, speed) {
 	pointAdd(actor.container.position, delta);
 	delta = pointSubtract(realNext, actor.container.position);
 	var length = sqrVecLength(delta);
-	if (length > 3 ) {
+	if (length > 10) {
 		return;
 	}
 	//we have arrived
