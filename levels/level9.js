@@ -80,6 +80,7 @@ levels[9] =
 		"D" :
 		{
 			"type" : "door",
+			"final" : true,
 			"passable" : false,
 			"sprites" : {
 				"open" : "door_open.png",
