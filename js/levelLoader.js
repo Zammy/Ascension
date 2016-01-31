@@ -24,14 +24,21 @@ function loadLevel(num) {
 		startingPos : playerPos,
 		dir : "s"
 	};
-	guards = levelData.guards;
-	for(var i=0; i<guards.length; ++i){
-		guard = guards[i];
-		guard.startingPos = {x: guard.x, y: guard.y};
+
+	guards = [];
+	var guardsData = levelData.guards;
+	for(var i=0; i<guardsData.length; i++){
+		var guard = {};
+
+		guard.startingPos = {x: guardsData[i].x, y: guardsData[i].y};
+		guard.dir = guardsData[i].dir;
 		guard.currentActionIndex = -1;
 		guard.waitTimeElapsed = 0;
 		guard.waitFor = 0;
 		guard.waiting = true;
+		guard.routine = guardsData[i].routine;
+
+		guards[i] = guard;
 	}
 }
 
@@ -45,6 +52,8 @@ var interactableUpdates = {
 			spikes.nextHide = now + 5000;
 			spikes.spriteShown.visible = true;
 			spikes.spriteHidden.visible = false;
+			spikesFX.currentTime = 0;
+			spikesFX.play();
 		} else if (now > spikes.nextHide && spikes.spriteShown.visible) {
 			spikes.nextShow = now + 2000;
 			spikes.spriteShown.visible = false;
@@ -58,7 +67,7 @@ var interactableUpdates = {
 		var playerMapPos = realToMapPos( player.container.position );
 		var spikesMapPos = realToMapPos( spikes.spriteShown.position );
 		if (sqrDist(playerMapPos, spikesMapPos) < 1) {
-			playerDied();
+			playerDied(now);
 		}
 	},
 

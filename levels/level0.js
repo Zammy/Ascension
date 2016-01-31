@@ -40,7 +40,7 @@ levels[0] =
 		[ "o", "o" , "o", "w", "w", "w", "w", "o", "w", "o", "o", "o", "w", "o", "w", "w" , "w", "w", "w", "w"],
 		[ "o", "w" , "w", "w", "o", "o", "o", "o", "w", "o", "w", "o", "w", "o", "w", "o" , "o", "o", "o", "w"],
 		[ "o", "w" , "o", "o", "o", "w", "w", "w", "w", "o", "w", "o", "w", "o", "o", "o" , "w", "w", "o", "w"],
-		[ "o", "o" , "o", "w", "o", "w", "o", "o", "o", "w", "w", "o", "w", "w", "w", "o" , "w", "w", "o", "D"],
+		[ "o", "s" , "o", "w", "o", "w", "o", "o", "o", "w", "w", "o", "w", "w", "w", "o" , "w", "w", "o", "D"],
 		[ "w", "o" , "w", "w", "o", "o", "o", "w", "o", "o", "o", "o", "o", "o", "w", "o" , "o", "o", "o", "w"]
 	],
 	"defenition" : 
@@ -61,9 +61,11 @@ levels[0] =
 			"type" : "spikes",
 			"passable" : true,
 			"sprites" : {
-				"hidden" : "floor.png",
-				"shown" : "spikes.png"
-			}
+				"floor" : "ground2.png",
+				"hidden" : "bloodyTrap-00.png",
+				"shown" : "bloodyTrap-01.png"
+				}
+   
 		},
 		"D" :
 		{

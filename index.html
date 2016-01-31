@@ -4,6 +4,7 @@
 <link rel="stylesheet" type="text/css" href="css/main.css"/>
 <script type="text/javascript" src="js/jquery-2.2.0.min.js"></script>
 <script type="text/javascript" src="js/pixi.js"></script>
+<script type="text/javascript" src="js/sounds.js"></script>
 <script type="text/javascript" src="js/util.js"></script>
 <script type="text/javascript" src="js/global.js"></script>
 <script type="text/javascript" src="levels/level0.js"></script>
@@ -15,6 +16,7 @@
 <script type="text/javascript" src="js/player.js"></script>
 <script type="text/javascript">
 $(function() {
+    loadAnimations();
 	$('#btnPlay').click(startGame);
 	var credits = ['Evgeni Petrov - Dev', 'Kostadin Vodenicharov - Dev', 'Todor Imreorov -  Animator, Environment Art' , 'Martin Boydov - Level Design', 'Jordan Panov - Level design'];
 	shuffle(credits);
