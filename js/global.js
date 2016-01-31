@@ -32,3 +32,4 @@ var restartingLengthMS = 2000;
 
 var scrollSprite = null;
 var showingScroll = false;
+
