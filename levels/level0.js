@@ -39,8 +39,8 @@ levels[0] =
 			"type" : "altar", 
 			"passable" : false,
 			"sprites" : {
-				"notVisited" : "altar.png",
-				"visited" : "altar_visited.png"
+				"notVisited" : "altar-0.png",
+				"visited" : "altar-1.png"
 			}
 		},
 		"s" :

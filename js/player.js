@@ -4,8 +4,8 @@ var interactableTiles = {
 			return;
 
 		altar.visited = true;
-		stage.removeChild(altar.spriteNotVisited);
-		stage.addChild(altar.spriteVisited);
+		altar.spriteNotVisited.visible = false;
+		altar.spriteVisited.visible = true;
 
 		var currentLevel = state.currentLevel;
 		for (var y = 0; y < currentLevel.length; y++) {
