@@ -144,7 +144,7 @@ function startGame() {
 
 	$('#mainMenu').hide();
 
-	loadLevel(2);
+	loadLevel(0);
 
 	renderInit();
 	renderLevel();
