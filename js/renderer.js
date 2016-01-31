@@ -158,7 +158,7 @@ function startGame() {
 	lastUpdate = currentTime;
 	setInterval(function updateLoop() {
 		var now = lastUpdate + STEP_TIME
-		if (!showingScroll){
+		if (!showingScroll && !showingFinal){
 			if (!restarting){
 				updateActor(player, now, PLAYER_SPEED);
 				for (var i=0; i<guards.length; ++i){
@@ -175,6 +175,36 @@ function startGame() {
 					renderLevel();
 				} else {
 					restartingSprite.alpha = (now - restartingSince)/(restartingUntil - restartingSince);
+				}
+			}
+		} else if (showingFinal) {
+			if (!finalStartTimeMS){
+				finalStartTimeMS = now;
+				// Mute everything else
+				backgroundTrack.pause();
+				mainTheme.pause();
+				spikesFX.pause();
+				stepsFX.pause();
+				// Play explosion
+				finalExplosion.position = 0;
+				finalExplosion.play();
+			} else {
+				if (now>=finalStartTimeMS + reloadAfterMS){
+					location.reload();
+				} else {
+					if (now >= finalStartTimeMS + blendAfterMS){
+						var blendCoef = (now - (finalStartTimeMS + blendAfterMS)) / blendForMS;
+						blendCoef = Math.max(0, Math.min(blendCoef, 1));
+						finalSprite2.alpha = blendCoef;
+					}
+					if (now >= finalStartTimeMS + fadeAfterMS){
+						var fadeCoef = (now - (finalStartTimeMS + fadeAfterMS)) / (reloadAfterMS - fadeAfterMS);
+						fadeCoef = Math.max(0, Math.min(fadeCoef, 1));
+						if (fadeCoef<1){
+							console.log(fadeCoef);
+						}
+						fadeSprite.alpha = fadeCoef;
+					}
 				}
 			}
 		}
@@ -286,16 +316,40 @@ function renderLevel(onLoaded) {
 	scrollSprite.position.x = 0;
 	scrollSprite.position.y = 0;
 	scrollSprite.visible = false;
+	finalSprite1 = PIXI.Sprite.fromImage("assets/final_frame_1.png");
+	finalSprite1.position.x = 0;
+	finalSprite1.position.y = 0;
+	finalSprite1.visible = false;
+	finalSprite2 = PIXI.Sprite.fromImage("assets/final_frame_2.png");
+	finalSprite2.position.x = 0;
+	finalSprite2.position.y = 0;
+	finalSprite2.alpha = 0;
+	finalSprite2.visible = false;
+	fadeSprite = PIXI.Sprite.fromImage("assets/fade.png");
+	fadeSprite.position.x = 0;
+	fadeSprite.position.y = 0;
+	fadeSprite.alpha = 0;
+	fadeSprite.visible = false;
 	resetPlayerPos();
 	resetGuards();
 
 	stage.addChild(restartingSprite);
 	stage.addChild(scrollSprite);
+	stage.addChild(finalSprite1);
+	stage.addChild(finalSprite2);
+	stage.addChild(fadeSprite);
 }
 
 function showScroll(){
 	showingScroll = true;
 	scrollSprite.visible = true;
+}
+
+function showFinal(){
+	showingFinal = true;
+	finalSprite1.visible = true;
+	finalSprite2.visible = true;
+	fadeSprite.visible = true;
 }
 
 function resetPlayerPos() {

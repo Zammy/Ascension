@@ -4,8 +4,10 @@ function handleClick(x, y){
 		console.log(pos);
 		playerClickedOn( pos );
 	} else {
-		scrollSprite.visible = false;
-		showingScroll = false;
+		if (!showingFinal){
+			scrollSprite.visible = false;
+			showingScroll = false;
+		}
 	}
 }
 

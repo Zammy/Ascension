@@ -33,3 +33,12 @@ var restartingLengthMS = 2000;
 var scrollSprite = null;
 var showingScroll = false;
 
+var finalSprite1 = null;
+var finalSprite2 = null;
+var fadeSprite = null;
+var showingFinal = false;
+var finalStartTimeMS = null;
+var blendAfterMS = 800;
+var blendForMS = 500;
+var fadeAfterMS = 10000;
+var reloadAfterMS = 15000;

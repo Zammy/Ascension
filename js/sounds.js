@@ -18,12 +18,13 @@ mainTheme.addEventListener('ended', function() {
 
 var spikesFX = new Audio("sound/spikes.mp3");
 
-var stepsFX = new Audio("sound/sneaky_footsteps.mp3");
+var stepsFX = new Audio("sound/footsteps_stones.mp3");
 
 stepsFX.addEventListener('ended', function() {
     this.currentTime = 0;
     this.play();
 }, false);
 
-mainTheme.play();
+var finalExplosion = new Audio("sound/final_explosion.mp3");
 
+mainTheme.play();
