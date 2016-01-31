@@ -25,6 +25,8 @@ stepsFX.addEventListener('ended', function() {
     this.play();
 }, false);
 
+var openDoorFX = new Audio("sound/open_door.mp3");
+
 var finalExplosion = new Audio("sound/final_explosion.mp3");
 
 mainTheme.play();

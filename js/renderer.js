@@ -144,7 +144,7 @@ function startGame() {
 
 	$('#mainMenu').hide();
 
-	loadLevel(0);
+	loadLevel(2);
 
 	renderInit();
 	renderLevel();
@@ -185,6 +185,7 @@ function startGame() {
 				mainTheme.pause();
 				spikesFX.pause();
 				stepsFX.pause();
+				openDoorFX.pause();
 				// Play explosion
 				finalExplosion.position = 0;
 				finalExplosion.play();
@@ -278,6 +279,8 @@ var typeLoader = {
 			openned.visible = true;
 			closed.visible = false;
 			door.passable = true;
+			openDoorFX.position = 0;
+			openDoorFX.play();
 		};
 	}, 
 	"scroll" : function scrollLoad(scroll, x, y) {
