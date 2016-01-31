@@ -16,13 +16,14 @@ var STEP_TIME = Math.floor(1000/30);
 var PLAYER_COMPLETE_MOVEMENT_MS = 1000;
 var ZERO_EPS = 0.1;
 
-var PLAYER_SPEED = 100;
+var PLAYER_SPEED = 110;
 var GUARD_SPEED = 100;
 
-var PLAYER_ANIM_SCALE = 0.42;
-var GUARD_ANIM_SCALE = 0.2;
+var PLAYER_ANIM_SCALE = 0.34;
+var GUARD_ANIM_SCALE = 0.18;
 
 var restartingSprite = null;
 var restarting = false;
 var restartingUntil = null;
 var restartingLengthMS = 2000;
+

@@ -1,0 +1,80 @@
+{
+"frames": {
+	"guard_1_idle_up_00.png": {
+		"frame": {"x":0, "y":516, "w":128, "h":128},
+		"spriteSourceSize": {"x":0,"y":0,"w":128,"h":128},
+		"sourceSize": {"w":128,"h":128}
+	},
+	"guard_1_idle_up_01.png": {
+		"frame": {"x":129, "y":129, "w":128, "h":128},
+		"spriteSourceSize": {"x":0,"y":0,"w":128,"h":128},
+		"sourceSize": {"w":128,"h":128}
+	},
+	"guard_1_idle_up_02.png": {
+		"frame": {"x":129, "y":0, "w":128, "h":128},
+		"spriteSourceSize": {"x":0,"y":0,"w":128,"h":128},
+		"sourceSize": {"w":128,"h":128}
+	},
+	"guard_1_idle_up_03.png": {
+		"frame": {"x":0, "y":774, "w":128, "h":128},
+		"spriteSourceSize": {"x":0,"y":0,"w":128,"h":128},
+		"sourceSize": {"w":128,"h":128}
+	},
+	"guard_1_idle_up_04.png": {
+		"frame": {"x":0, "y":645, "w":128, "h":128},
+		"spriteSourceSize": {"x":0,"y":0,"w":128,"h":128},
+		"sourceSize": {"w":128,"h":128}
+	},
+	"guard_1_idle_up_05.png": {
+		"frame": {"x":129, "y":258, "w":128, "h":128},
+		"spriteSourceSize": {"x":0,"y":0,"w":128,"h":128},
+		"sourceSize": {"w":128,"h":128}
+	},
+	"guard_1_idle_up_06.png": {
+		"frame": {"x":0, "y":387, "w":128, "h":128},
+		"spriteSourceSize": {"x":0,"y":0,"w":128,"h":128},
+		"sourceSize": {"w":128,"h":128}
+	},
+	"guard_1_idle_up_07.png": {
+		"frame": {"x":0, "y":258, "w":128, "h":128},
+		"spriteSourceSize": {"x":0,"y":0,"w":128,"h":128},
+		"sourceSize": {"w":128,"h":128}
+	},
+	"guard_1_idle_up_08.png": {
+		"frame": {"x":0, "y":387, "w":128, "h":128},
+		"spriteSourceSize": {"x":0,"y":0,"w":128,"h":128},
+		"sourceSize": {"w":128,"h":128}
+	},
+	"guard_1_idle_up_09.png": {
+		"frame": {"x":0, "y":129, "w":128, "h":128},
+		"spriteSourceSize": {"x":0,"y":0,"w":128,"h":128},
+		"sourceSize": {"w":128,"h":128}
+	},
+	"guard_1_idle_up_10.png": {
+		"frame": {"x":0, "y":645, "w":128, "h":128},
+		"spriteSourceSize": {"x":0,"y":0,"w":128,"h":128},
+		"sourceSize": {"w":128,"h":128}
+	},
+	"guard_1_idle_up_11.png": {
+		"frame": {"x":0, "y":774, "w":128, "h":128},
+		"spriteSourceSize": {"x":0,"y":0,"w":128,"h":128},
+		"sourceSize": {"w":128,"h":128}
+	},
+	"guard_1_idle_up_12.png": {
+		"frame": {"x":0, "y":0, "w":128, "h":128},
+		"spriteSourceSize": {"x":0,"y":0,"w":128,"h":128},
+		"sourceSize": {"w":128,"h":128}
+	},
+	"guard_1_idle_up_13.png": {
+		"frame": {"x":129, "y":129, "w":128, "h":128},
+		"spriteSourceSize": {"x":0,"y":0,"w":128,"h":128},
+		"sourceSize": {"w":128,"h":128}
+	}
+
+},
+"meta": {
+	"image": "guard_1_idle_up.png",
+	"size": {"w": 512, "h": 1024},
+	"scale": "1"
+}
+}

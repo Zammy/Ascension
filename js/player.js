@@ -34,6 +34,7 @@ function playerClickedOn(pos) {
 		}
 		player.goal = pos;
 		player.next = null;
+		setVisualRotation(player, player.dir);
 	} else {
 		var tile = state.currentLevel[pos.y][pos.x];
 		var playerMapPos = realToMapPos( player.container.position );
@@ -54,7 +55,7 @@ function setVisualRotation(actor, dir){
 		}
 	}
 
-	switch(dir){
+	switch(dir) {
 		case 'w':
 			if (actor.goal && actor.animations.walkLeft) {
 				actor.animations.walkLeft.play();
@@ -126,6 +127,10 @@ function setNext(actor) {
 }
 
 function updateActor(actor, now, speed) {
+	if (!actor.container) {
+		return;
+	}
+
 	// AI routines
 	if (actor.waiting){
 		actor.waitTimeElapsed += STEP_TIME;
@@ -150,21 +155,22 @@ function updateActor(actor, now, speed) {
 					actor.waiting = true;
 					break;
 				case "dir":
+					actor.dir = action[1];
 					setVisualRotation(actor, action[1]);
 					break;
 			}
 		}
 	}
 	if (!actor.goal) {
-		setVisualRotation(actor, actor.dir);
 		return;
 	}
+
 	if (!actor.next) {
 		setNext(actor);
 	}
 	// Check if the guards see the player
-	if ((actor != player)){
-		delta_player = pointSubtract(player.container.position, actor.container.position);
+	if ((actor != player) && player.container ){
+		var delta_player = pointSubtract(player.container.position, actor.container.position);
 		if ((sqrVecLength(delta_player)<=Math.pow(TILE_WIDTH*3,2)) && ((delta_player.x==0)||(delta_player.y==0))){
 			if (((actor.dir=='n')&&(delta_player.y<0))||((actor.dir=='s')&&(delta_player.y>0))||((actor.dir=='w')&&(delta_player.x<0))||((actor.dir=='e')&&(delta_player.x>0))){
 				// Check for obstructions
@@ -213,6 +219,7 @@ function updateActor(actor, now, speed) {
 	actor.container.position = realNext;
 	if (sqrDist(actor.next, actor.goal) < ZERO_EPS) {
 		actor.goal = null;
+		setVisualRotation(actor, actor.dir);
 	} 
 	actor.next = null;
 }
