@@ -245,8 +245,26 @@ var typeLoader = {
 			openned.visible = true;
 			closed.visible = false;
 			door.passable = true;
-		}
-	} 
+		};
+	}, 
+	"scroll" : function scrollLoad(scroll, x, y) {
+		var floor = PIXI.Sprite.fromImage("assets/raw/" + scroll.sprites.floor);
+		floor.position.x = TILE_WIDTH * x;
+		floor.position.y = TILE_HEIGHT * y;
+		scroll.sprites.floor = floor;
+		stage.addChild(floor);
+
+		var scrollSprite = PIXI.Sprite.fromImage("assets/raw/" + scroll.sprites.scroll);
+		scrollSprite.position.x = TILE_WIDTH * x;
+		scrollSprite.position.y = TILE_HEIGHT * y;
+		stage.addChild(scrollSprite);
+		scroll.sprites.scroll = scrollSprite;
+
+		scroll.open = function() {
+			showScroll();
+			scrollSprite.visible = false;
+		};
+	}
 }
 
 function renderLevel(onLoaded) {
