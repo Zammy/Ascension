@@ -58,7 +58,7 @@ var interactableUpdates = {
 		var playerMapPos = realToMapPos( player.container.position );
 		var spikesMapPos = realToMapPos( spikes.spriteShown.position );
 		if (sqrDist(playerMapPos, spikesMapPos) < 1) {
-			playerDied();
+			playerDied(now);
 		}
 	},
 
