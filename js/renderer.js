@@ -206,13 +206,18 @@ var typeLoader = {
 		altar.spriteVisited = visited;
 	},
 	"spikes" : function spikesLoader(spikes, x, y) {
-		var hidden = PIXI.Sprite.fromImage("assets/" + spikes.sprites.hidden);
+		var floor = PIXI.Sprite.fromImage("assets/raw/" + spikes.sprites.floor);
+		floor.position.x = TILE_WIDTH * x;
+		floor.position.y = TILE_HEIGHT * y;
+		stage.addChild(floor);
+
+		var hidden = PIXI.Sprite.fromImage("assets/raw/" + spikes.sprites.hidden);
 		hidden.position.x = TILE_WIDTH * x;
 		hidden.position.y = TILE_HEIGHT * y;
 		stage.addChild(hidden);
 		spikes.spriteHidden = hidden;
 
-		var shown = PIXI.Sprite.fromImage("assets/" + spikes.sprites.shown);
+		var shown = PIXI.Sprite.fromImage("assets/raw/" + spikes.sprites.shown);
 		shown.position.x = TILE_WIDTH * x;
 		shown.position.y = TILE_HEIGHT * y;
 		shown.visible = false;
