@@ -135,6 +135,12 @@ function renderLevel(onLoaded) {
 	loader.add('guard_1_left', 'assets/raw/animation-guard-1/WALK/left/guard_1_left.json');
 	loader.add('guard_1_up', 'assets/raw/animation-guard-1/WALK/up/guard_1_up.json');
 	loader.add('guard_1_down', 'assets/raw/animation-guard-1/WALK/down/guard_1_down.json');
+
+	loader.add('guard_1_idle_right', 'assets/raw/animation-guard-1/IDLE/right/guard_1_idle_right.json');
+	loader.add('guard_1_idle_left', 'assets/raw/animation-guard-1/IDLE/left/guard_1_idle_left.json');
+	loader.add('guard_1_idle_up', 'assets/raw/animation-guard-1/IDLE/up/guard_1_idle_up.json');
+	loader.add('guard_1_idle_down', 'assets/raw/animation-guard-1/IDLE/down/guard_1_idle_down.json');
+
 	loader.on('complete', function() {
 		renderPlayer();
 		renderGuards();
@@ -231,21 +237,21 @@ function renderGuards(){
 				downAnimFrames[i] = texture;
 			};
 
-			var rightIdleAnimFrames = rightAnimFrames;
-			var leftIdleAnimFrames = leftAnimFrames;
-			var upIdleAnimFrames = upAnimFrames;
-			var donwIdleAnimFrames = downAnimFrames;
-			// for (var i = 0; i < 16; i++) {
-			// 	var iStr = i < 10 ? "0" + i : i.toString();
-			// 	var texture = PIXI.Texture.fromFrame('player_idle_right_' + iStr + '.png');
-			// 	rightIdleAnimFrames[i] = texture;
-			// 	var texture = PIXI.Texture.fromFrame('player_idle_left_' + iStr + '.png');
-			// 	leftIdleAnimFrames[i] = texture;
-			// 	var texture = PIXI.Texture.fromFrame('player_idle_up_' + iStr + '.png');
-			// 	upIdleAnimFrames[i] = texture;
-			// 	var texture = PIXI.Texture.fromFrame('player_idle_down_' + iStr + '.png');
-			// 	donwIdleAnimFrames[i] = texture;
-			// }
+			var rightIdleAnimFrames = [];
+			var leftIdleAnimFrames = [];
+			var upIdleAnimFrames = [];
+			var donwIdleAnimFrames = [];
+			for (var i = 0; i < 14; i++) {
+				var iStr = i < 10 ? "0" + i : i.toString();
+				var texture = PIXI.Texture.fromFrame('guard_1_idle_right_' + iStr + '.png');
+				rightIdleAnimFrames[i] = texture;
+				var texture = PIXI.Texture.fromFrame('guard_1_idle_left_' + iStr + '.png');
+				leftIdleAnimFrames[i] = texture;
+				var texture = PIXI.Texture.fromFrame('guard_1_idle_up_' + iStr + '.png');
+				upIdleAnimFrames[i] = texture;
+				var texture = PIXI.Texture.fromFrame('guard_1_idle_down_' + iStr + '.png');
+				donwIdleAnimFrames[i] = texture;
+			}
 
 			var keyToAnim = {
 				"walkRight" : rightAnimFrames,

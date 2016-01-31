@@ -34,6 +34,7 @@ function playerClickedOn(pos) {
 		}
 		player.goal = pos;
 		player.next = null;
+		setVisualRotation(player, player.dir);
 	} else {
 		var tile = state.currentLevel[pos.y][pos.x];
 		var playerMapPos = realToMapPos( player.container.position );
@@ -54,7 +55,7 @@ function setVisualRotation(actor, dir){
 		}
 	}
 
-	switch(dir){
+	switch(dir) {
 		case 'w':
 			if (actor.goal && actor.animations.walkLeft) {
 				actor.animations.walkLeft.play();
@@ -150,15 +151,16 @@ function updateActor(actor, now, speed) {
 					actor.waiting = true;
 					break;
 				case "dir":
+					actor.dir = action[1];
 					setVisualRotation(actor, action[1]);
 					break;
 			}
 		}
 	}
 	if (!actor.goal) {
-		setVisualRotation(actor, actor.dir);
 		return;
 	}
+
 	if (!actor.next) {
 		setNext(actor);
 	}
@@ -213,6 +215,7 @@ function updateActor(actor, now, speed) {
 	actor.container.position = realNext;
 	if (sqrDist(actor.next, actor.goal) < ZERO_EPS) {
 		actor.goal = null;
+		setVisualRotation(actor, actor.dir);
 	} 
 	actor.next = null;
 }
