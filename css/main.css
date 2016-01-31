@@ -29,6 +29,7 @@ body{
 	width:1280px;
 	height:720px;
 	z-index:100;
+	background-image: url('../assets/ASCENTION-title-and-gameOver.png');
 }
 
 #titleLoop{
