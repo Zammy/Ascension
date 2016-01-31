@@ -227,16 +227,19 @@ function startUpdate() {
 
 var typeLoader = {
 	"altar" : function altarLoader(altar, x, y) {
-		var notVisited = PIXI.Sprite.fromImage("assets/" + altar.sprites.notVisited);
+		var notVisited = PIXI.Sprite.fromImage("assets/raw/" + altar.sprites.notVisited);
 		notVisited.position.x = TILE_WIDTH * x;
 		notVisited.position.y = TILE_HEIGHT * y;
 		stage.addChild(notVisited);
 		altar.spriteNotVisited = notVisited;
 
-		var visited = PIXI.Sprite.fromImage("assets/" + altar.sprites.visited);
+		var visited = PIXI.Sprite.fromImage("assets/raw/" + altar.sprites.visited);
 		visited.position.x = TILE_WIDTH * x;
 		visited.position.y = TILE_HEIGHT * y;
 		altar.spriteVisited = visited;
+		visited.visible = false;
+		stage.addChild(visited);
+
 	},
 	"spikes" : function spikesLoader(spikes, x, y) {
 		var floor = PIXI.Sprite.fromImage("assets/raw/" + spikes.sprites.floor);
@@ -275,8 +278,26 @@ var typeLoader = {
 			openned.visible = true;
 			closed.visible = false;
 			door.passable = true;
-		}
-	} 
+		};
+	}, 
+	"scroll" : function scrollLoad(scroll, x, y) {
+		var floor = PIXI.Sprite.fromImage("assets/raw/" + scroll.sprites.floor);
+		floor.position.x = TILE_WIDTH * x;
+		floor.position.y = TILE_HEIGHT * y;
+		scroll.sprites.floor = floor;
+		stage.addChild(floor);
+
+		var scrollSprite = PIXI.Sprite.fromImage("assets/raw/" + scroll.sprites.scroll);
+		scrollSprite.position.x = TILE_WIDTH * x;
+		scrollSprite.position.y = TILE_HEIGHT * y;
+		stage.addChild(scrollSprite);
+		scroll.sprites.scroll = scrollSprite;
+
+		scroll.open = function() {
+			showScroll();
+			scrollSprite.visible = false;
+		};
+	}
 }
 
 function renderLevel(onLoaded) {

@@ -19,7 +19,7 @@ levels[0] =
 	"map" :
 	[
 		[ "w", "w" , "w", "w", "w", "w", "w", "w", "w", "w", "w", "w", "w", "w", "w", "w" , "w", "w", "w", "w"],
-		[ "o", "o" , "o", "w", "o", "o", "s", "o", "o", "o", "w", "o", "o", "o", "o", "o" , "o", "w", "w", "a"],
+		[ "o", "o" , "R", "w", "o", "o", "s", "o", "o", "o", "w", "o", "o", "o", "o", "o" , "o", "w", "w", "a"],
 		[ "w", "o" , "w", "w", "o", "w", "o", "w", "w", "o", "w", "w", "o", "w", "w", "w" , "o", "s", "o", "o"],
 		[ "w", "o" , "o", "o", "o", "w", "o", "w", "w", "o", "o", "o", "o", "o", "o", "w" , "o", "w", "o", "w"],
 		[ "o", "o" , "w", "w", "o", "w", "o", "o", "w", "w", "w", "o", "w", "w", "o", "o" , "o", "w", "o", "w"],
@@ -39,8 +39,8 @@ levels[0] =
 			"type" : "altar", 
 			"passable" : false,
 			"sprites" : {
-				"notVisited" : "altar.png",
-				"visited" : "altar_visited.png"
+				"notVisited" : "altar-0.png",
+				"visited" : "altar-1.png"
 			}
 		},
 		"s" :
@@ -51,7 +51,7 @@ levels[0] =
 				"floor" : "ground2.png",
 				"hidden" : "bloodyTrap-00.png",
 				"shown" : "bloodyTrap-01.png"
-				}
+			}
    
 		},
 		"D" :
@@ -61,6 +61,15 @@ levels[0] =
 			"sprites" : {
 				"open" : "door_open.png",
 				"close" : "door_close.png"
+			}
+		},
+		"R" :
+		{
+			"type" : "scroll",
+			"passable" : true,
+			"sprites" :  {
+				"scroll" : "scroll-item.png",
+				"floor" : "ground1.png"
 			}
 		}
 	}

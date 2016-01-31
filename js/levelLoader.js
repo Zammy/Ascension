@@ -80,6 +80,18 @@ var interactableUpdates = {
 		if (sqrDist(playerMapPos, doorMapPos) < 1) {
 			goToNextLevel();
 		}
+	},
+
+	"scroll" : function(scroll, x , y) {
+		if (!player.container || !scroll.sprites.scroll.visible) {
+			return;
+		}
+
+		var playerMapPos = realToMapPos( player.container.position );
+		var doorMapPos = realToMapPos( scroll.sprites.scroll );
+		if (sqrDist(playerMapPos, doorMapPos) < 1) {
+			scroll.open();
+		}
 	}
 }
 
