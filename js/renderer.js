@@ -282,7 +282,7 @@ function renderLevel(onLoaded) {
 	restartingSprite.position.y = 0;
 	restartingSprite.alpha = 0;
 	restartingSprite.visible = false;
-	scrollSprite = PIXI.Sprite.fromImage("assets/scroll_placeholder.png")
+	scrollSprite = PIXI.Sprite.fromImage("assets/raw/Scroll-1.png")
 	scrollSprite.position.x = 0;
 	scrollSprite.position.y = 0;
 	scrollSprite.visible = false;
