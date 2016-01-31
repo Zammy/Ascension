@@ -1,4 +1,4 @@
-levels[9] = 
+levels[3] = 
 {
 	"player" : { "x" : 0, "y" : 9},
 	"guards" :
