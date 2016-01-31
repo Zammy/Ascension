@@ -6,47 +6,178 @@ function renderInit() {
 	stage = new PIXI.Container();
 }
 
-function startGame(){
+function loadAnimations() {
+	var loader = new PIXI.loaders.Loader();
+
+	loader.add('player_right', 'assets/raw/animation-player/MOVE/render-right/player_right.json');
+	loader.add('player_left', 'assets/raw/animation-player/MOVE/render-left/player_left.json');
+	loader.add('player_up', 'assets/raw/animation-player/MOVE/render-back/player_up.json');
+	loader.add('player_down', 'assets/raw/animation-player/MOVE/render-front/player_down.json');
+
+	loader.add('player_idle_right', 'assets/raw/animation-player/IDLE/render-right/player_idle_right.json');
+	loader.add('player_idle_left', 'assets/raw/animation-player/IDLE/render-left/player_idle_left.json');
+	loader.add('player_idle_up', 'assets/raw/animation-player/IDLE/render-back/player_idle_up.json');
+	loader.add('player_idle_down', 'assets/raw/animation-player/IDLE/render-front/player_idle_down.json');
+
+	loader.add('guard_1_right', 'assets/raw/animation-guard-1/WALK/right/guard_1_right.json');
+	loader.add('guard_1_left', 'assets/raw/animation-guard-1/WALK/left/guard_1_left.json');
+	loader.add('guard_1_up', 'assets/raw/animation-guard-1/WALK/up/guard_1_up.json');
+	loader.add('guard_1_down', 'assets/raw/animation-guard-1/WALK/down/guard_1_down.json');
+
+	loader.add('guard_1_idle_right', 'assets/raw/animation-guard-1/IDLE/right/guard_1_idle_right.json');
+	loader.add('guard_1_idle_left', 'assets/raw/animation-guard-1/IDLE/left/guard_1_idle_left.json');
+	loader.add('guard_1_idle_up', 'assets/raw/animation-guard-1/IDLE/up/guard_1_idle_up.json');
+	loader.add('guard_1_idle_down', 'assets/raw/animation-guard-1/IDLE/down/guard_1_idle_down.json');
+
+	loader.on('complete', function() {
+		loadPlayerAnimations();
+		loadGuardAnimations();
+	});
+	loader.load();
+}
+
+function loadPlayerAnimations() {
+	var rightAnimFrames = [];
+	var leftAnimFrames = [];
+	var upAnimFrames = [];
+	var downAnimFrames = [];
+	for (var i = 0; i < 32; i++) {
+		var iStr = i < 10 ? "0" + i : i.toString();
+		var texture = PIXI.Texture.fromFrame('player_right_' + iStr + '.png');
+		rightAnimFrames[i] = texture;
+		var texture = PIXI.Texture.fromFrame('player_left_' + iStr + '.png');
+		leftAnimFrames[i] = texture;
+		var texture = PIXI.Texture.fromFrame('player_up_' + iStr + '.png');
+		upAnimFrames[i] = texture;
+		var texture = PIXI.Texture.fromFrame('player_down_' + iStr + '.png');
+		downAnimFrames[i] = texture;
+	};
+
+	var rightIdleAnimFrames = [];
+	var leftIdleAnimFrames = [];
+	var upIdleAnimFrames = [];
+	var donwIdleAnimFrames = [];
+	for (var i = 0; i < 16; i++) {
+		var iStr = i < 10 ? "0" + i : i.toString();
+		var texture = PIXI.Texture.fromFrame('player_idle_right_' + iStr + '.png');
+		rightIdleAnimFrames[i] = texture;
+		var texture = PIXI.Texture.fromFrame('player_idle_left_' + iStr + '.png');
+		leftIdleAnimFrames[i] = texture;
+		var texture = PIXI.Texture.fromFrame('player_idle_up_' + iStr + '.png');
+		upIdleAnimFrames[i] = texture;
+		var texture = PIXI.Texture.fromFrame('player_idle_down_' + iStr + '.png');
+		donwIdleAnimFrames[i] = texture;
+	}
+
+	playerAnimations = {
+		"walkRight" : rightAnimFrames,
+		"walkLeft" : leftAnimFrames,
+		"walkUp" : upAnimFrames,
+		"walkDown" : downAnimFrames,
+		"idleRight" : rightIdleAnimFrames,
+		"idleLeft" : leftIdleAnimFrames,
+		"idleUp" : upIdleAnimFrames,
+		"idleDown" : donwIdleAnimFrames
+	}
+
+	var keyToAnim = {
+		"walkRight" : rightAnimFrames,
+		"walkLeft" : leftAnimFrames,
+		"walkUp" : upAnimFrames,
+		"walkDown" : downAnimFrames,
+		"idleRight" : rightIdleAnimFrames,
+		"idleLeft" : leftIdleAnimFrames,
+		"idleUp" : upIdleAnimFrames,
+		"idleDown" : donwIdleAnimFrames
+	}
+}
+
+function loadGuardAnimations() {
+	var rightAnimFrames = [];
+	var leftAnimFrames = [];
+	var upAnimFrames = [];
+	var downAnimFrames = [];
+	for (var i = 0; i < 8; i++) {
+		var iStr = i < 10 ? "0" + i : i.toString();
+		var texture = PIXI.Texture.fromFrame('guard_1_right_' + iStr + '.png');
+		rightAnimFrames[i] = texture;
+		var texture = PIXI.Texture.fromFrame('guard_1_left_' + iStr + '.png');
+		leftAnimFrames[i] = texture;
+		var texture = PIXI.Texture.fromFrame('guard_1_up_' + iStr + '.png');
+		upAnimFrames[i] = texture;
+		var texture = PIXI.Texture.fromFrame('guard_1_down_' + iStr + '.png');
+		downAnimFrames[i] = texture;
+	};
+
+	var rightIdleAnimFrames = [];
+	var leftIdleAnimFrames = [];
+	var upIdleAnimFrames = [];
+	var donwIdleAnimFrames = [];
+	for (var i = 0; i < 14; i++) {
+		var iStr = i < 10 ? "0" + i : i.toString();
+		var texture = PIXI.Texture.fromFrame('guard_1_idle_right_' + iStr + '.png');
+		rightIdleAnimFrames[i] = texture;
+		var texture = PIXI.Texture.fromFrame('guard_1_idle_left_' + iStr + '.png');
+		leftIdleAnimFrames[i] = texture;
+		var texture = PIXI.Texture.fromFrame('guard_1_idle_up_' + iStr + '.png');
+		upIdleAnimFrames[i] = texture;
+		var texture = PIXI.Texture.fromFrame('guard_1_idle_down_' + iStr + '.png');
+		donwIdleAnimFrames[i] = texture;
+	}
+
+	guardAnimations = {
+		"walkRight" : rightAnimFrames,
+		"walkLeft" : leftAnimFrames,
+		"walkUp" : upAnimFrames,
+		"walkDown" : downAnimFrames,
+		"idleRight" : rightIdleAnimFrames,
+		"idleLeft" : leftIdleAnimFrames,
+		"idleUp" : upIdleAnimFrames,
+		"idleDown" : donwIdleAnimFrames
+	}
+}
+
+function startGame() {
 	mainTheme.pause();
 	backgroundTrack.currentTime = 0;
 	backgroundTrack.play();
+
 	$('#mainMenu').hide();
 
 	loadLevel(0);
 
 	renderInit();
-	renderLevel(function() {
-		startUpdate();
+	renderLevel();
+	startUpdate();
 
-		addMouseHandler();
+	addMouseHandler();
 
-		gameStartTime = Date.now();
-		currentTime = gameStartTime;
+	gameStartTime = Date.now();
+	currentTime = gameStartTime;
 
-		lastUpdate = currentTime;
-		setInterval(function updateLoop() {
-			var now = lastUpdate + STEP_TIME
-			if (!restarting){
-				updateActor(player, now, PLAYER_SPEED);
-				for (var i=0; i<guards.length; ++i){
-					updateActor(guards[i], now, GUARD_SPEED);
-				}
-				updateLevel(now);
-				
-			} else {
-				if (now>= restartingUntil){
-					restarting = false;
-					restartingSprite.alpha = 0;
-					loadLevel(state.currentLevelIndex);
-					renderLevel();
-				} else {
-					restartingSprite.alpha = (now - restartingSince)/(restartingUntil - restartingSince);
-				}
+	lastUpdate = currentTime;
+	setInterval(function updateLoop() {
+		var now = lastUpdate + STEP_TIME
+		if (!restarting){
+			updateActor(player, now, PLAYER_SPEED);
+			for (var i=0; i<guards.length; ++i){
+				updateActor(guards[i], now, GUARD_SPEED);
 			}
-			lastUpdate = now;
-		}, STEP_TIME);
-		$('canvas').show();
-	});
+			updateLevel(now);
+			
+		} else {
+			if (now>= restartingUntil){
+				restarting = false;
+				restartingSprite.alpha = 0;
+				loadLevel(state.currentLevelIndex);
+				renderLevel();
+			} else {
+				restartingSprite.alpha = (now - restartingSince)/(restartingUntil - restartingSince);
+			}
+		}
+		lastUpdate = now;
+	}, STEP_TIME);
+	$('canvas').show();
 }
 
 function pauseGame(){
@@ -142,99 +273,20 @@ function renderLevel(onLoaded) {
 	restartingSprite.position.x = 0;
 	restartingSprite.position.y = 0;
 	restartingSprite.alpha = 0;
-	var complete =  function() {
-		loadAnimations();
 
-		resetPlayerPos();
-		
-		renderGuards();
-		stage.addChild(restartingSprite);
+	resetPlayerPos();
+	resetGuards();
 
-		if (onLoaded) {
-			onLoaded();
-		}
-	};
-	
-	if (!player.animations) {
-		
-		var loader = new PIXI.loaders.Loader();
-
-		loader.add('player_right', 'assets/raw/animation-player/MOVE/render-right/player_right.json');
-		loader.add('player_left', 'assets/raw/animation-player/MOVE/render-left/player_left.json');
-		loader.add('player_up', 'assets/raw/animation-player/MOVE/render-back/player_up.json');
-		loader.add('player_down', 'assets/raw/animation-player/MOVE/render-front/player_down.json');
-
-		loader.add('player_idle_right', 'assets/raw/animation-player/IDLE/render-right/player_idle_right.json');
-		loader.add('player_idle_left', 'assets/raw/animation-player/IDLE/render-left/player_idle_left.json');
-		loader.add('player_idle_up', 'assets/raw/animation-player/IDLE/render-back/player_idle_up.json');
-		loader.add('player_idle_down', 'assets/raw/animation-player/IDLE/render-front/player_idle_down.json');
-
-		loader.add('guard_1_right', 'assets/raw/animation-guard-1/WALK/right/guard_1_right.json');
-		loader.add('guard_1_left', 'assets/raw/animation-guard-1/WALK/left/guard_1_left.json');
-		loader.add('guard_1_up', 'assets/raw/animation-guard-1/WALK/up/guard_1_up.json');
-		loader.add('guard_1_down', 'assets/raw/animation-guard-1/WALK/down/guard_1_down.json');
-
-		loader.add('guard_1_idle_right', 'assets/raw/animation-guard-1/IDLE/right/guard_1_idle_right.json');
-		loader.add('guard_1_idle_left', 'assets/raw/animation-guard-1/IDLE/left/guard_1_idle_left.json');
-		loader.add('guard_1_idle_up', 'assets/raw/animation-guard-1/IDLE/up/guard_1_idle_up.json');
-		loader.add('guard_1_idle_down', 'assets/raw/animation-guard-1/IDLE/down/guard_1_idle_down.json');
-
-		loader.on('complete', complete);
-		loader.load();
-	} else {
-		complete();
-	}
+	stage.addChild(restartingSprite);
 }
 
-function loadAnimations() {
-	var rightAnimFrames = [];
-	var leftAnimFrames = [];
-	var upAnimFrames = [];
-	var downAnimFrames = [];
-	for (var i = 0; i < 32; i++) {
-		var iStr = i < 10 ? "0" + i : i.toString();
-		var texture = PIXI.Texture.fromFrame('player_right_' + iStr + '.png');
-		rightAnimFrames[i] = texture;
-		var texture = PIXI.Texture.fromFrame('player_left_' + iStr + '.png');
-		leftAnimFrames[i] = texture;
-		var texture = PIXI.Texture.fromFrame('player_up_' + iStr + '.png');
-		upAnimFrames[i] = texture;
-		var texture = PIXI.Texture.fromFrame('player_down_' + iStr + '.png');
-		downAnimFrames[i] = texture;
-	};
-
-	var rightIdleAnimFrames = [];
-	var leftIdleAnimFrames = [];
-	var upIdleAnimFrames = [];
-	var donwIdleAnimFrames = [];
-	for (var i = 0; i < 16; i++) {
-		var iStr = i < 10 ? "0" + i : i.toString();
-		var texture = PIXI.Texture.fromFrame('player_idle_right_' + iStr + '.png');
-		rightIdleAnimFrames[i] = texture;
-		var texture = PIXI.Texture.fromFrame('player_idle_left_' + iStr + '.png');
-		leftIdleAnimFrames[i] = texture;
-		var texture = PIXI.Texture.fromFrame('player_idle_up_' + iStr + '.png');
-		upIdleAnimFrames[i] = texture;
-		var texture = PIXI.Texture.fromFrame('player_idle_down_' + iStr + '.png');
-		donwIdleAnimFrames[i] = texture;
-	}
-
-	var keyToAnim = {
-		"walkRight" : rightAnimFrames,
-		"walkLeft" : leftAnimFrames,
-		"walkUp" : upAnimFrames,
-		"walkDown" : downAnimFrames,
-		"idleRight" : rightIdleAnimFrames,
-		"idleLeft" : leftIdleAnimFrames,
-		"idleUp" : upIdleAnimFrames,
-		"idleDown" : donwIdleAnimFrames
-	}
+function resetPlayerPos() {
 	var container = new PIXI.Container();
 	container.anchor = new PIXI.Point(0.5, 0.5);
 	player.container = container;
 	player.animations = {};
-	for (var key in keyToAnim) {
-		var clip = new PIXI.extras.MovieClip( keyToAnim[key] );
+	for (var key in playerAnimations) {
+		var clip = new PIXI.extras.MovieClip( playerAnimations[key] );
 		clip.visible = false;
 		clip.position = new PIXI.Point(-TILE_WIDTH/2, -TILE_HEIGHT/2 - 46);
 		clip.animationSpeed = PLAYER_ANIM_SCALE;
@@ -243,9 +295,8 @@ function loadAnimations() {
 	}
 	player.animations.idleUp.visible = true;
 	player.animations.idleUp.play();
-}
 
-function resetPlayerPos() {
+
 	var startPos = player.startingPos;
 	var realPos = mapToRealPos(startPos);
 	player.container.position = new PIXI.Point(realPos.x, realPos.y);
@@ -253,76 +304,32 @@ function resetPlayerPos() {
 	stage.addChild(player.container);
 }
 
-function renderGuards(){
-	for (var i=0; i<guards.length; ++i){
+function resetGuards(){
+	for (var i=0; i<guards.length; ++i) {
 		var guard = guards[i];
-		if (!guard.animations) {
 
-			var rightAnimFrames = [];
-			var leftAnimFrames = [];
-			var upAnimFrames = [];
-			var downAnimFrames = [];
-			for (var i = 0; i < 8; i++) {
-				var iStr = i < 10 ? "0" + i : i.toString();
-				var texture = PIXI.Texture.fromFrame('guard_1_right_' + iStr + '.png');
-				rightAnimFrames[i] = texture;
-				var texture = PIXI.Texture.fromFrame('guard_1_left_' + iStr + '.png');
-				leftAnimFrames[i] = texture;
-				var texture = PIXI.Texture.fromFrame('guard_1_up_' + iStr + '.png');
-				upAnimFrames[i] = texture;
-				var texture = PIXI.Texture.fromFrame('guard_1_down_' + iStr + '.png');
-				downAnimFrames[i] = texture;
-			};
+		var container = new PIXI.Container();
+		container.anchor = new PIXI.Point(0.5, 0.5);
+		guard.container = container;
 
-			var rightIdleAnimFrames = [];
-			var leftIdleAnimFrames = [];
-			var upIdleAnimFrames = [];
-			var donwIdleAnimFrames = [];
-			for (var i = 0; i < 14; i++) {
-				var iStr = i < 10 ? "0" + i : i.toString();
-				var texture = PIXI.Texture.fromFrame('guard_1_idle_right_' + iStr + '.png');
-				rightIdleAnimFrames[i] = texture;
-				var texture = PIXI.Texture.fromFrame('guard_1_idle_left_' + iStr + '.png');
-				leftIdleAnimFrames[i] = texture;
-				var texture = PIXI.Texture.fromFrame('guard_1_idle_up_' + iStr + '.png');
-				upIdleAnimFrames[i] = texture;
-				var texture = PIXI.Texture.fromFrame('guard_1_idle_down_' + iStr + '.png');
-				donwIdleAnimFrames[i] = texture;
-			}
-
-			var keyToAnim = {
-				"walkRight" : rightAnimFrames,
-				"walkLeft" : leftAnimFrames,
-				"walkUp" : upAnimFrames,
-				"walkDown" : downAnimFrames,
-				"idleRight" : rightIdleAnimFrames,
-				"idleLeft" : leftIdleAnimFrames,
-				"idleUp" : upIdleAnimFrames,
-				"idleDown" : donwIdleAnimFrames
-			}
-			
-			var container = new PIXI.Container();
-			container.anchor = new PIXI.Point(0.5, 0.5);
-			guard.container = container;
-
-			guard.animations = {};
-			for (var key in keyToAnim) {
-				var clip = new PIXI.extras.MovieClip( keyToAnim[key] );
-				clip.visible = false;
-				clip.position = new PIXI.Point(-TILE_WIDTH/2-32, -TILE_HEIGHT/2 -64);
-				clip.animationSpeed = GUARD_ANIM_SCALE;
-				guard.animations[key] = clip;
-				container.addChild(clip);
-			}
-			guard.animations.idleUp.visible = true;
-			guard.animations.idleUp.play();
-
-			var torchTexture = new PIXI.Texture.fromImage('assets/torch.png');
-			var torch = new PIXI.Sprite(torchTexture);
-			torch.position = new PIXI.Point(-160, -160);
-			torch.blendMode = PIXI.BLEND_MODES.SCREEN;
-			container.addChild(torch);
+		guard.animations = {};
+		for (var key in guardAnimations) {
+			var clip = new PIXI.extras.MovieClip( guardAnimations[key] );
+			clip.visible = false;
+			clip.position = new PIXI.Point(-TILE_WIDTH/2-32, -TILE_HEIGHT/2 -64);
+			clip.animationSpeed = GUARD_ANIM_SCALE;
+			guard.animations[key] = clip;
+			container.addChild(clip);
 		}
+		guard.animations.idleUp.visible = true;
+		guard.animations.idleUp.play();
+
+		var torchTexture = new PIXI.Texture.fromImage('assets/torch.png');
+		var torch = new PIXI.Sprite(torchTexture);
+		torch.position = new PIXI.Point(-160, -160);
+		torch.blendMode = PIXI.BLEND_MODES.SCREEN;
+		container.addChild(torch);
+		
 	 
 		var startPos = guard.startingPos;
 		var realPos = mapToRealPos(startPos);

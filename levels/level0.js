@@ -4,11 +4,10 @@ levels[0] =
 	"guards" :
 	[
 		{
-			"x" : 16, 
+			"x" : 1, 
 			"y" : 9, 
 			"dir" : "w",
 			"routine" : [
-				["walk", 1, 9],
 				["dir", "n"],
 				["wait", 1000],
 				["walk", 1, 5],

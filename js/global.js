@@ -9,6 +9,9 @@ var TILE_WIDTH = 64;
 var player = null;
 var guards = null;
 
+var playerAnimations;
+var guardAnimations;
+
 var gameStartTime = null;
 var currentTime = null;
 

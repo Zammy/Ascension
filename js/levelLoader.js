@@ -24,14 +24,21 @@ function loadLevel(num) {
 		startingPos : playerPos,
 		dir : "s"
 	};
-	guards = levelData.guards;
-	for(var i=0; i<guards.length; ++i){
-		guard = guards[i];
-		guard.startingPos = {x: guard.x, y: guard.y};
+
+	guards = [];
+	var guardsData = levelData.guards;
+	for(var i=0; i<guardsData.length; i++){
+		var guard = {};
+
+		guard.startingPos = {x: guardsData[i].x, y: guardsData[i].y};
+		guard.dir = guardsData[i].dir;
 		guard.currentActionIndex = -1;
 		guard.waitTimeElapsed = 0;
 		guard.waitFor = 0;
 		guard.waiting = true;
+		guard.routine = guardsData[i].routine;
+
+		guards[i] = guard;
 	}
 }
 
