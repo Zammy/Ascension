@@ -63,6 +63,9 @@ var interactableUpdates = {
 	},
 
 	"door" : function(door, x, y) {
+		if (!player.container) {
+			return;
+		}
 		var playerMapPos = realToMapPos( player.container.position );
 		var doorMapPos = realToMapPos( door.spriteOpenned.position );
 		if (sqrDist(playerMapPos, doorMapPos) < 1) {
