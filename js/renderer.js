@@ -23,11 +23,22 @@ function startGame(){
 		lastUpdate = currentTime;
 		setInterval(function updateLoop() {
 			var now = lastUpdate + STEP_TIME
-			updateActor(player, now, PLAYER_SPEED);
-			for (var i=0; i<guards.length; ++i){
-				updateActor(guards[i], now, GUARD_SPEED);
+			if (!restarting){
+				updateActor(player, now, PLAYER_SPEED);
+				for (var i=0; i<guards.length; ++i){
+					updateActor(guards[i], now, GUARD_SPEED);
+				}
+				updateLevel(now);
+				
+			} else {
+				if (now>= restartingUntil){
+					restartingSprite.alpha = 0;
+					loadLevel(state.currentLevelIndex);
+					renderLevel();
+				} else {
+					restartingSprite.alpha = (now - restartingSince)/(restartingUntil - restartingSince);
+				}
 			}
-			updateLevel(now);
 			lastUpdate = now;
 		}, STEP_TIME);
 		$('canvas').show();
@@ -119,6 +130,14 @@ function renderLevel(onLoaded) {
 			}
 		};
 	};
+	var darkSprite = PIXI.Sprite.fromImage("assets/dark.png");
+	darkSprite.position.x = 0;
+	darkSprite.position.y = 0;
+	stage.addChild(darkSprite);
+	restartingSprite = PIXI.Sprite.fromImage("assets/restarting.png");
+	restartingSprite.position.x = 0;
+	restartingSprite.position.y = 0;
+	restartingSprite.alpha = 0;
 	var loader = new PIXI.loaders.Loader();
 
 	loader.add('player_right', 'assets/raw/animation-player/MOVE/render-right/player_right.json');
@@ -138,6 +157,7 @@ function renderLevel(onLoaded) {
 	loader.on('complete', function() {
 		renderPlayer();
 		renderGuards();
+		stage.addChild(restartingSprite);
 		onLoaded();
 	});
 	loader.load();

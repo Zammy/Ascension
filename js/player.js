@@ -192,7 +192,7 @@ function updateActor(actor, now, speed) {
 				};
 				if (no_obstructions){
 					// You are captured.
-					playerDied();
+					playerDied(now);
 				}
 			}
 		}
@@ -217,10 +217,14 @@ function updateActor(actor, now, speed) {
 	actor.next = null;
 }
 
-function playerDied() {
-	alert('dead');
-	loadLevel(state.currentLevelIndex);
-	renderLevel();
+function playerDied(now) {
+	//alert('dead');
+	//loadLevel(state.currentLevelIndex);
+	//renderLevel();
+	// Code above moved to renderer
+	restartingSince = now;
+	restartingUntil = now + restartingLengthMS;
+	restarting = true;
 }
 
 function goToNextLevel() {
