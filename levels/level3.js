@@ -62,8 +62,8 @@ levels[3] =
 			"type" : "altar", 
 			"passable" : false,
 			"sprites" : {
-				"notVisited" : "altar.png",
-				"visited" : "altar_visited.png"
+				"notVisited" : "altar-0.png",
+				"visited" : "altar-4.png"
 			}
 		},
 		"s" :
@@ -83,8 +83,8 @@ levels[3] =
 			"final" : true,
 			"passable" : false,
 			"sprites" : {
-				"open" : "door_open.png",
-				"close" : "door_close.png"
+				"open" : "door-1.png",
+				"close" : "door-0.png"
 			}
 		}
 	}
