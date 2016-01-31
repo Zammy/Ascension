@@ -45,6 +45,8 @@ var interactableUpdates = {
 			spikes.nextHide = now + 5000;
 			spikes.spriteShown.visible = true;
 			spikes.spriteHidden.visible = false;
+			spikesFX.currentTime = 0;
+			spikesFX.play();
 		} else if (now > spikes.nextHide && spikes.spriteShown.visible) {
 			spikes.nextShow = now + 2000;
 			spikes.spriteShown.visible = false;
