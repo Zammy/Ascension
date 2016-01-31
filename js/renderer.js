@@ -32,6 +32,7 @@ function startGame(){
 				
 			} else {
 				if (now>= restartingUntil){
+					restarting = false;
 					restartingSprite.alpha = 0;
 					loadLevel(state.currentLevelIndex);
 					renderLevel();
