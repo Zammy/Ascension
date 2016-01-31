@@ -59,8 +59,8 @@ levels[0] =
 			"type" : "door",
 			"passable" : false,
 			"sprites" : {
-				"open" : "door_open.png",
-				"close" : "door_close.png"
+				"open" : "door-0.png",
+				"close" : "door-1.png"
 			}
 		},
 		"R" :

@@ -262,14 +262,14 @@ var typeLoader = {
 		spikes.spriteShown = shown;
 	},
 	"door" : function doorLoad(door, x, y) {
-		var openned = PIXI.Sprite.fromImage("assets/" + door.sprites.open);
+		var openned = PIXI.Sprite.fromImage("assets/raw/" + door.sprites.open);
 		openned.position.x = TILE_WIDTH * x;
 		openned.position.y = TILE_HEIGHT * y;
 		openned.visible = false;
 		stage.addChild(openned);
 		door.spriteOpenned = openned;
 
-		var closed = PIXI.Sprite.fromImage("assets/" + door.sprites.close);
+		var closed = PIXI.Sprite.fromImage("assets/raw/" + door.sprites.close);
 		closed.position.x = TILE_WIDTH * x;
 		closed.position.y = TILE_HEIGHT * y;
 		stage.addChild(closed);
