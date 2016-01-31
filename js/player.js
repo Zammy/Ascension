@@ -224,6 +224,9 @@ function updateActor(actor, now, speed) {
 	if (sqrDist(actor.next, actor.goal) < ZERO_EPS) {
 		actor.goal = null;
 		setVisualRotation(actor, actor.dir);
+		if (actor == player){
+			stepsFX.pause();
+		}
 	} 
 	actor.next = null;
 }
@@ -238,6 +241,7 @@ function playerDied(now) {
 	restartingSince = now;
 	restartingUntil = now + restartingLengthMS;
 	restarting = true;
+	restartingSprite.visible = true;
 }
 
 function goToNextLevel() {
