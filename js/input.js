@@ -1,6 +1,8 @@
 function handleClick(x, y){
 	if (!showingScroll){
-		playerClickedOn( realToMapPos({x: x, y: y}) );
+		var pos =  realToMapPos({x: x, y: y});
+		console.log(pos);
+		playerClickedOn( pos );
 	} else {
 		scrollSprite.visible = false;
 		showingScroll = false;
