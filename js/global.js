@@ -30,3 +30,5 @@ var restarting = false;
 var restartingUntil = null;
 var restartingLengthMS = 2000;
 
+var scrollSprite = null;
+var showingScroll = false;

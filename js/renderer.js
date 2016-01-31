@@ -158,21 +158,24 @@ function startGame() {
 	lastUpdate = currentTime;
 	setInterval(function updateLoop() {
 		var now = lastUpdate + STEP_TIME
-		if (!restarting){
-			updateActor(player, now, PLAYER_SPEED);
-			for (var i=0; i<guards.length; ++i){
-				updateActor(guards[i], now, GUARD_SPEED);
-			}
-			updateLevel(now);
-			
-		} else {
-			if (now>= restartingUntil){
-				restarting = false;
-				restartingSprite.alpha = 0;
-				loadLevel(state.currentLevelIndex);
-				renderLevel();
+		if (!showingScroll){
+			if (!restarting){
+				updateActor(player, now, PLAYER_SPEED);
+				for (var i=0; i<guards.length; ++i){
+					updateActor(guards[i], now, GUARD_SPEED);
+				}
+				updateLevel(now);
+				
 			} else {
-				restartingSprite.alpha = (now - restartingSince)/(restartingUntil - restartingSince);
+				if (now>= restartingUntil){
+					restartingSprite.visible = false;
+					restarting = false;
+					restartingSprite.alpha = 0;
+					loadLevel(state.currentLevelIndex);
+					renderLevel();
+				} else {
+					restartingSprite.alpha = (now - restartingSince)/(restartingUntil - restartingSince);
+				}
 			}
 		}
 		lastUpdate = now;
@@ -278,11 +281,21 @@ function renderLevel(onLoaded) {
 	restartingSprite.position.x = 0;
 	restartingSprite.position.y = 0;
 	restartingSprite.alpha = 0;
-
+	restartingSprite.visible = false;
+	scrollSprite = PIXI.Sprite.fromImage("assets/scroll_placeholder.png")
+	scrollSprite.position.x = 0;
+	scrollSprite.position.y = 0;
+	scrollSprite.visible = false;
 	resetPlayerPos();
 	resetGuards();
 
 	stage.addChild(restartingSprite);
+	stage.addChild(scrollSprite);
+}
+
+function showScroll(){
+	showingScroll = true;
+	scrollSprite.visible = true;
 }
 
 function resetPlayerPos() {
