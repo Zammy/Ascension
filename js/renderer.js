@@ -7,6 +7,9 @@ function renderInit() {
 }
 
 function startGame(){
+	mainTheme.pause();
+	backgroundTrack.currentTime = 0;
+	backgroundTrack.play();
 	$('#mainMenu').hide();
 
 	loadLevel(0);
